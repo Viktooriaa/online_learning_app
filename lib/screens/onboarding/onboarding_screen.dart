@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_learning_app/screens/auth/log_in_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
@@ -69,11 +70,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             : AppColors.lightText,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: EdgeInsets.all(24.w),
 
           child: Column(
             children: [
-              const SizedBox(height: 55),
+              SizedBox(height: 55.h),
               // Skip
               if (currentIndex != 2)
                 Align(
@@ -98,7 +99,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ),
 
-              const SizedBox(height: 12),
+              SizedBox(height: 12.h),
 
               // Pages
               Expanded(
@@ -121,33 +122,31 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         // Image
                         item.showBackground
                             ? Container(
-                                height: 260,
-                                width: 260,
+                                height: 260.h, width: 260.w,
 
                                 decoration: BoxDecoration(
                                   color: isDark
                                       ? Colors.transparent
                                       : AppColors.onboardingBackground,
 
-                                  borderRadius: BorderRadius.circular(57),
+                                  borderRadius: BorderRadius.circular(57.r),
 
                                   border: index == 0
                                       ? Border.all(
-                                          color: AppColors.darkText,
-                                          width: 1,
+                                          color: AppColors.darkText, width: 1.w,
                                         )
                                       : null,
                                 ),
 
                                 child: Padding(
-                                  padding: const EdgeInsets.all(20),
+                                  padding: EdgeInsets.all(20.w),
 
                                   child: Image.asset(item.image),
                                 ),
                               )
-                            : Image.asset(item.image, height: 260),
+                            : Image.asset(item.image, height: 260.h),
 
-                        const SizedBox(height: 32),
+                        SizedBox(height: 32.h),
 
                         // Title
                         Text(
@@ -162,7 +161,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ),
                         ),
 
-                        const SizedBox(height: 18),
+                        SizedBox(height: 18.h),
 
                         // Description
                         Text(
@@ -173,7 +172,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           style: AppTextStyles.s16w400,
                         ),
 
-                        const SizedBox(height: 26),
+                        SizedBox(height: 26.h),
 
                         // Dots
                         Row(
@@ -183,24 +182,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             dotIndex,
                           ) {
                             return Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 4),
+                              margin: EdgeInsets.symmetric(horizontal: 4.w),
 
-                              width: currentIndex == dotIndex ? 20 : 6,
-
-                              height: 6,
+                              width: currentIndex == dotIndex ? 20 : 6, height: 6.h,
 
                               decoration: BoxDecoration(
                                 color: currentIndex == dotIndex
                                     ? AppColors.primary
                                     : AppColors.border,
 
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(10.r),
                               ),
                             );
                           }),
                         ),
 
-                        if (item.showButtons) const SizedBox(height: 82),
+                        if (item.showButtons) SizedBox(height: 82.h),
 
                         // Buttons
                         if (item.showButtons)
@@ -223,7 +220,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 ),
                               ),
 
-                              const SizedBox(width: 16),
+                              SizedBox(width: 16.w),
 
                               Expanded(
                                 child: SecondaryButton(

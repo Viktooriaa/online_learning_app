@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../core/constants/app_colors.dart';
 import '../core/constants/app_text_styles.dart';
@@ -65,7 +66,7 @@ class EmptyStateView extends StatelessWidget {
                     onTap: () => Navigator.maybePop(context),
                     child: Icon(
                       Icons.arrow_back_ios_new_rounded,
-                      size: 18,
+                      size: 18.w,
                       color: titleColor,
                     ),
                   ),
@@ -118,37 +119,33 @@ class EmptyStateBody extends StatelessWidget {
     return Transform.translate(
       offset: Offset(0, yOffset),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 42),
+        padding: EdgeInsets.symmetric(horizontal: 42.w),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            EmptyStateIllustration(kind: kind, width: 240),
-            const SizedBox(height: 18),
+            EmptyStateIllustration(kind: kind, width: 240.w),
+            SizedBox(height: 18.h),
             Text(
               title,
               textAlign: TextAlign.center,
               style: AppTextStyles.s14w500.copyWith(
                 color: titleColor,
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-                height: 1,
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w700, height: 1,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8.h),
             Text(
               subtitle,
               textAlign: TextAlign.center,
               style: AppTextStyles.s10w400.copyWith(
                 color: mutedColor,
-                fontSize: 10,
-                height: 1.35,
+                fontSize: 10.sp, height: 1.35,
               ),
             ),
             if (buttonText != null) ...[
-              const SizedBox(height: 24),
-              SizedBox(
-                width: 146,
-                height: 42,
+              SizedBox(height: 24.h),
+              SizedBox(width: 146.w, height: 42.h,
                 child: ElevatedButton(
                   onPressed: onButtonPressed,
                   style: ElevatedButton.styleFrom(
@@ -157,14 +154,14 @@ class EmptyStateBody extends StatelessWidget {
                     elevation: 0,
                     shadowColor: Colors.transparent,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(7),
+                      borderRadius: BorderRadius.circular(7.r),
                     ),
                   ),
                   child: Text(
                     buttonText!,
                     style: AppTextStyles.s12w500.copyWith(
                       color: Colors.white,
-                      fontSize: 12,
+                      fontSize: 12.sp,
                     ),
                   ),
                 ),

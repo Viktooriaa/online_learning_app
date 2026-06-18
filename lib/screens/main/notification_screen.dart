@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
@@ -88,7 +89,7 @@ class NotificationScreen extends StatelessWidget {
         backgroundColor: background,
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 24, 20, 0),
+            padding: EdgeInsets.fromLTRB(20.w, 24.h, 20.w, 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -98,13 +99,13 @@ class NotificationScreen extends StatelessWidget {
                     color: titleColor,
                   ),
                 ),
-                const SizedBox(height: 15),
+                SizedBox(height: 15.h),
                 NotificationTabs(
                   active: NotificationSection.notification,
                   onMessageTap: () => Navigator.maybePop(context),
                   onNotificationTap: () {},
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16.h),
                 Expanded(
                   child: NotificationList(notifications: notifications),
                 ),
@@ -188,10 +189,9 @@ class _TabLabel extends StatelessWidget {
                 ),
               ),
               if (showDot) ...[
-                const SizedBox(width: 4),
+                SizedBox(width: 4.w),
                 Container(
-                  width: 6,
-                  height: 6,
+                  width: 6.w, height: 6.h,
                   decoration: const BoxDecoration(
                     color: AppColors.orange,
                     shape: BoxShape.circle,
@@ -200,14 +200,14 @@ class _TabLabel extends StatelessWidget {
               ],
             ],
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8.h),
           AnimatedContainer(
             duration: const Duration(milliseconds: 180),
-            width: isActive ? 68 : 0,
-            height: 2,
+            width: isActive ? 68.w : 0,
+            height: 2.h,
             decoration: BoxDecoration(
               color: AppColors.primary,
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: BorderRadius.circular(4.r),
             ),
           ),
         ],
@@ -247,7 +247,7 @@ class NotificationList extends StatelessWidget {
             title: item.title,
             time: item.time,
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12.h),
         ],
       ],
     );
@@ -281,37 +281,36 @@ class _NotificationTile extends StatelessWidget {
         : const Color(0xFF858597);
 
     return Container(
-      height: 80,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      height: 80.h,
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       decoration: BoxDecoration(
         color: cardColor,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: isDark ? 0 : 0.06),
-            blurRadius: 18,
-            offset: const Offset(0, 8),
+            blurRadius: 18.r,
+            offset: Offset(0, 8.h),
           ),
         ],
       ),
       child: Row(
         children: [
           Container(
-            width: 48,
-            height: 48,
+            width: 48.w, height: 48.h,
             decoration: BoxDecoration(
               color: iconBackgroundColor,
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(10.r),
             ),
             child: Center(
               child: SvgPicture.asset(
                 iconPath,
-                width: iconWidth,
-                height: iconHeight,
+                width: iconWidth.w,
+                height: iconHeight.h,
               ),
             ),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -323,22 +322,20 @@ class _NotificationTile extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: AppTextStyles.s12w500.copyWith(
                     color: textColor,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                    height: 1,
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w700, height: 1,
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
                 Row(
                   children: [
-                    Icon(Icons.access_time, size: 11, color: mutedColor),
-                    const SizedBox(width: 4),
+                    Icon(Icons.access_time, size: 11.w, color: mutedColor),
+                    SizedBox(width: 4.w),
                     Text(
                       time,
                       style: AppTextStyles.s12w400.copyWith(
                         color: mutedColor,
-                        fontSize: 12,
-                        height: 1,
+                        fontSize: 12.sp, height: 1,
                       ),
                     ),
                   ],

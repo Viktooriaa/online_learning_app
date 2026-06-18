@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
@@ -68,7 +69,7 @@ class MessageScreen extends StatelessWidget {
       backgroundColor: background,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 24, 20, 0),
+          padding: EdgeInsets.fromLTRB(20.w, 24.h, 20.w, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -76,11 +77,11 @@ class MessageScreen extends StatelessWidget {
                 'Notifications',
                 style: AppTextStyles.s24w700.copyWith(
                   color: titleColor,
-                  fontSize: 24,
+                  fontSize: 24.sp,
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(height: 15),
+              SizedBox(height: 15.h),
               NotificationTabs(
                 active: NotificationSection.message,
                 onMessageTap: () {},
@@ -93,7 +94,7 @@ class MessageScreen extends StatelessWidget {
                   );
                 },
               ),
-              const SizedBox(height: 18),
+              SizedBox(height: 18.h),
               Expanded(child: _MessageList(messages: messages)),
             ],
           ),
@@ -123,7 +124,7 @@ class _MessageList extends StatelessWidget {
 
     return ListView(
       physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.only(bottom: 20),
+      padding: EdgeInsets.only(bottom: 20.h),
       children: [
         for (final item in messages) ...[
           _MessageCard(
@@ -133,7 +134,7 @@ class _MessageList extends StatelessWidget {
             text: item.text,
             hasPreview: item.hasPreview,
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12.h),
         ],
       ],
     );
@@ -173,17 +174,17 @@ class _MessageCard extends StatelessWidget {
         minHeight: hasPreview ? 293 : 120,
       ),
 
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.w),
 
       decoration: BoxDecoration(
         color: cardColor,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(14.r),
 
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 20,
-            offset: const Offset(0, 6),
+            blurRadius: 20.r,
+            offset: Offset(0, 6.h),
           ),
         ],
       ),
@@ -198,15 +199,14 @@ class _MessageCard extends StatelessWidget {
             children: [
 
               Container(
-                width: 48,
-                height: 48,
+                width: 48.w, height: 48.h,
                 decoration: BoxDecoration(
                   color: const Color(0xFFD8FFEF),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12.r),
                 ),
               ),
 
-              const SizedBox(width: 12),
+              SizedBox(width: 12.w),
 
               Expanded(
                 child: Column(
@@ -235,7 +235,7 @@ class _MessageCard extends StatelessWidget {
                       ],
                     ),
 
-                    const SizedBox(height: 3),
+                    SizedBox(height: 3.h),
 
                     Text(
                       status,
@@ -250,26 +250,24 @@ class _MessageCard extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: 16),
+          SizedBox(height: 16.h),
 
           /// текст повідомлення
           Text(
             text,
             style: AppTextStyles.s12w400.copyWith(
-              color: mutedColor,
-              height: 1.45,
+              color: mutedColor, height: 1.45,
             ),
           ),
 
           if (hasPreview) ...[
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
 
             Container(
-              width: double.infinity,
-              height: 145,
+              width: double.infinity, height: 145.h,
               decoration: BoxDecoration(
                 color: const Color(0xFFFFE7EE),
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(12.r),
               ),
             ),
           ],

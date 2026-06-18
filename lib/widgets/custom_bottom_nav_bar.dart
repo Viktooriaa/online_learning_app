@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../core/constants/app_colors.dart';
 import '../core/constants/app_text_styles.dart';
@@ -44,16 +45,16 @@ class CustomBottomNavBar extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: navBg,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(32),
-              topRight: Radius.circular(32),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(32.r),
+              topRight: Radius.circular(32.r),
             ),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withValues(
                   alpha: isDark ? 0.35 : 0.08,
                 ),
-                blurRadius: 20,
+                blurRadius: 20.r,
                 offset: const Offset(0, -4),
               ),
             ],
@@ -66,8 +67,7 @@ class CustomBottomNavBar extends StatelessWidget {
                       children: [
                         _NavItem(iconPath: 'assets/icons/home.svg',    label: 'Home',    isSelected: currentIndex == 0, onTap: () => onTap(0)),
                         _NavItem(iconPath: 'assets/icons/course.svg',  label: 'Course',  isSelected: currentIndex == 1, onTap: () => onTap(1)),
-                        const SizedBox(
-                          width: 72,
+                        SizedBox(width: 72.w,
                         ),
                         _NavItem(iconPath: 'assets/icons/message.svg', label: 'Message', isSelected: currentIndex == 3, onTap: () => onTap(3)),
                         _NavItem(iconPath: 'assets/icons/account.svg', label: 'Account', isSelected: currentIndex == 4, onTap: () => onTap(4)),
@@ -99,26 +99,23 @@ class CustomBottomNavBar extends StatelessWidget {
                     //    borderRadius: BorderRadius.circular(_indicatorHeight / 2),
                     //  ),
                    // ),
-                   // const SizedBox(height: 4),
+                   // SizedBox(height: 4.h),
                     Container(
-                      width: 64,
-                      height: 64,
+                      width: 64.w, height: 64.h,
                       decoration: BoxDecoration(
                         color: searchBg,
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black.withValues(alpha: 0.08),
-                            blurRadius: 16,
-                            offset: const Offset(0, 4),
+                            blurRadius: 16.r,
+                            offset: Offset(0, 4.h),
                           ),
                         ],
                       ),
                       child: Center(
                         child: SvgPicture.asset(
-                          'assets/icons/search.svg',
-                          width: 24,
-                          height: 24,
+                          'assets/icons/search.svg', width: 24.w, height: 24.h,
                           colorFilter: ColorFilter.mode(
                             currentIndex == 2
                                 ? AppColors.primary
@@ -128,10 +125,10 @@ class CustomBottomNavBar extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4.h),
                     Text('Search',
                       style: AppTextStyles.s12w400.copyWith(
-                        fontSize: 11,
+                        fontSize: 11.sp,
                         fontWeight: currentIndex == 2 ? FontWeight.w600 : FontWeight.w500,
                         color: currentIndex == 2 ? AppColors.primary : AppColors.greyText,
                       ),
@@ -183,13 +180,13 @@ class _NavItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(_indicatorHeight / 2),
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8.h),
             SvgPicture.asset(iconPath, width: _iconSize, height: _iconSize,
                 colorFilter: ColorFilter.mode(color, BlendMode.srcIn)),
-            const SizedBox(height: 4),
+            SizedBox(height: 4.h),
             Text(label,
               style: AppTextStyles.s12w400.copyWith(
-                fontSize: 12,
+                fontSize: 12.sp,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
                 color: color,
               ),

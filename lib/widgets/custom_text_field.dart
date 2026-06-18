@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../core/constants/app_colors.dart';
 import '../core/constants/app_text_styles.dart';
@@ -38,9 +39,7 @@ class _CustomTextFieldState
     bool isDark =
         Theme.of(context).brightness == Brightness.dark;
 
-    return SizedBox(
-
-      height: 42,
+    return SizedBox(height: 42.h,
 
       child: TextField(
 
@@ -78,7 +77,7 @@ class _CustomTextFieldState
                   ? Icons.visibility_off_outlined
                   : Icons.visibility_outlined,
 
-              size: 18,
+              size: 18.w,
 
               color: AppColors.greyText,
             ),
@@ -93,30 +92,27 @@ class _CustomTextFieldState
               : Colors.white,
 
           contentPadding:
-          const EdgeInsets.symmetric(
-            horizontal: 14,
+          EdgeInsets.symmetric(horizontal: 14.w,
             vertical: 12,
           ),
 
           enabledBorder: OutlineInputBorder(
 
             borderRadius:
-            BorderRadius.circular(10),
+            BorderRadius.circular(10.r),
 
-            borderSide: const BorderSide(
-              color: AppColors.border,
-              width: 1,
+            borderSide: BorderSide(
+              color: AppColors.border, width: 1.w,
             ),
           ),
 
           focusedBorder: OutlineInputBorder(
 
             borderRadius:
-            BorderRadius.circular(10),
+            BorderRadius.circular(10.r),
 
-            borderSide: const BorderSide(
-              color: AppColors.primary,
-              width: 1,
+            borderSide: BorderSide(
+              color: AppColors.primary, width: 1.w,
             ),
           ),
         ),

@@ -3,6 +3,7 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
 import '../../core/utils/network_guard.dart';
 import 'my_courses_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -28,19 +29,16 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               // HEADER
-              SizedBox(
-                height: 220,
+              SizedBox(height: 220.h,
 
                 child: Stack(
                   clipBehavior: Clip.none,
 
                   children: [
                     Container(
-                      width: double.infinity,
-                      height: 170,
+                      width: double.infinity, height: 170.h,
 
-                      padding: const EdgeInsets.only(
-                        left: 20,
+                      padding: EdgeInsets.only(left: 20.w,
                         right: 20,
                         top: 16,
                       ),
@@ -65,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
 
                             children: [
-                              const SizedBox(height: 10),
+                              SizedBox(height: 10.h),
 
                               Text(
                                 'Hi, Kristin',
@@ -75,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
 
-                              const SizedBox(height: 4),
+                              SizedBox(height: 4.h),
 
                               Text(
                                 "Let's start learning",
@@ -102,23 +100,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       bottom: 0,
 
                       child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
+                        padding: EdgeInsets.symmetric(horizontal: 16.w,
                           vertical: 16,
                         ),
 
                         decoration: BoxDecoration(
                           color: isDark ? AppColors.cardDark : Colors.white,
 
-                          borderRadius: BorderRadius.circular(18),
+                          borderRadius: BorderRadius.circular(18.r),
 
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withValues(alpha: 0.04),
 
-                              blurRadius: 10,
+                              blurRadius: 10.r,
 
-                              offset: const Offset(0, 4),
+                              offset: Offset(0, 4.h),
                             ),
                           ],
                         ),
@@ -155,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
 
-                            const SizedBox(height: 8),
+                            SizedBox(height: 8.h),
 
                             RichText(
                               text: TextSpan(
@@ -180,19 +177,18 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
 
-                            const SizedBox(height: 12),
+                            SizedBox(height: 12.h),
 
                             Container(
 
-                              width: double.infinity,
-                              height: 5,
+                              width: double.infinity, height: 5.h,
 
                               decoration: BoxDecoration(
 
                                 color: AppColors.progressBackground,
 
                                 borderRadius:
-                                BorderRadius.circular(20),
+                                BorderRadius.circular(20.r),
                               ),
 
                               child: Align(
@@ -201,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                                 child: Container(
 
-                                  width: 210,
+                                  width: 210.w,
 
                                   decoration: BoxDecoration(
 
@@ -221,7 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
 
                                     borderRadius:
-                                    BorderRadius.circular(20),
+                                    BorderRadius.circular(20.r),
                                   ),
                                 ),
                               ),
@@ -234,55 +230,47 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
 
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
 
               // BANNERS
-              SizedBox(
-                height: 156,
+              SizedBox(height: 156.h,
 
                 child: ListView(
                   scrollDirection: Axis.horizontal,
 
-                  padding: const EdgeInsets.only(left: 20),
+                  padding: EdgeInsets.only(left: 20.w),
 
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(18),
+                      borderRadius: BorderRadius.circular(18.r),
 
                       child: Image.asset(
-                        'assets/images/learning_banner.png',
-
-                        width: 249,
-                        height: 156,
+                        'assets/images/learning_banner.png', width: 249.w, height: 156.h,
 
                         fit: BoxFit.cover,
                       ),
                     ),
 
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12.w),
 
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(18),
+                      borderRadius: BorderRadius.circular(18.r),
 
                       child: Image.asset(
-                        'assets/images/course_banner.png',
-
-                        width: 249,
-                        height: 140,
+                        'assets/images/course_banner.png', width: 249.w, height: 140.h,
 
                         fit: BoxFit.cover,
                       ),
                     ),
 
-                    const SizedBox(width: 20),
+                    SizedBox(width: 20.w),
                   ],
                 ),
               ),
 
-              const SizedBox(height: 23),
+              SizedBox(height: 23.h),
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
+                padding: EdgeInsets.symmetric(horizontal: 20.w,
                 ),
                 child: Align(
                   alignment: Alignment.centerLeft,
@@ -300,29 +288,29 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 width: double.infinity,
 
-                margin: const EdgeInsets.symmetric(horizontal: 20),
+                margin: EdgeInsets.symmetric(horizontal: 20.w),
 
-                padding: const EdgeInsets.all(18),
+                padding: EdgeInsets.all(18.w),
 
                 decoration: BoxDecoration(
                   color: isDark ? AppColors.cardDark : Colors.white,
 
-                  borderRadius: BorderRadius.circular(18),
+                  borderRadius: BorderRadius.circular(18.r),
 
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withValues(alpha: 0.03),
 
-                      blurRadius: 10,
+                      blurRadius: 10.r,
 
-                      offset: const Offset(0, 4),
+                      offset: Offset(0, 4.h),
                     ),
                   ],
                 ),
 
                 child: Column(
                   children: [
-                    const SizedBox(height: 18),
+                    SizedBox(height: 18.h),
 
                     _planItem(
                       title: 'Packaging Design',
@@ -331,7 +319,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       isDark: isDark,
                     ),
 
-                    const SizedBox(height: 18),
+                    SizedBox(height: 18.h),
 
                     _planItem(
                       title: 'Product Design',
@@ -340,7 +328,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       isDark: isDark,
                     ),
 
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.h),
                     Center(
                       child: Text(
                         'more',
@@ -351,21 +339,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
 
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10.h),
                   ],
                 ),
               ),
 
-          const SizedBox(height: 14),
+          SizedBox(height: 14.h),
 
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
+                padding: EdgeInsets.symmetric(horizontal: 20.w,
                 ),
                 child: SizedBox(
                   width: double.infinity,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(18),
+                    borderRadius: BorderRadius.circular(18.r),
                     child: Image.asset(
                       'assets/images/meetup.png',
                       fit: BoxFit.cover,
@@ -374,7 +361,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
 
-          const SizedBox(height: 110),
+          SizedBox(height: 110.h),
             ],
           ),
         ),
@@ -390,9 +377,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }) {
     return Row(
       children: [
-        SizedBox(
-          width: 18,
-          height: 18,
+        SizedBox(width: 18.w, height: 18.h,
 
           child: CircularProgressIndicator(
             value: value,
@@ -409,7 +394,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
 
-        const SizedBox(width: 14),
+        SizedBox(width: 14.w),
 
         Expanded(
           child: Text(

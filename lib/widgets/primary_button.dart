@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../core/constants/app_colors.dart';
 import '../core/constants/app_text_styles.dart';
@@ -19,8 +20,7 @@ class PrimaryButton extends StatelessWidget {
 
     return SizedBox(
 
-      width: double.infinity,
-      height: 56,
+      width: double.infinity, height: 56.h,
 
       child: ElevatedButton(
 
@@ -33,7 +33,7 @@ class PrimaryButton extends StatelessWidget {
           elevation: 0,
 
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(16.r),
           ),
         ),
 

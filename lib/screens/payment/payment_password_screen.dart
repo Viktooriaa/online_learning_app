@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
@@ -71,7 +72,7 @@ class _PaymentPasswordScreenState
               onTap: () => Navigator.maybePop(context),
               child: Icon(
                 Icons.close_rounded,
-                size: 18,
+                size: 18.w,
                 color: isDark ? Colors.white : AppColors.darkText,
               ),
             ),
@@ -85,7 +86,7 @@ class _PaymentPasswordScreenState
                     'Payment Method',
                     style: AppTextStyles.s12w500.copyWith(
                       color: isDark ? Colors.white : AppColors.darkText,
-                      fontSize: 12,
+                      fontSize: 12.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -109,7 +110,7 @@ class _PaymentPasswordScreenState
                     '\$74.00',
                     style: AppTextStyles.s24w700.copyWith(
                       color: textPrimary,
-                      fontSize: 32,
+                      fontSize: 32.sp,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -121,8 +122,8 @@ class _PaymentPasswordScreenState
                 top: 250,
                 bottom: 0,
                 child: ClipRRect(
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(28),
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(28.r),
                   ),
                   child: Container(
                     color: cardColor,
@@ -140,24 +141,24 @@ class _PaymentPasswordScreenState
                           'Payment Password',
                           style: AppTextStyles.s24w700.copyWith(
                             color: textPrimary,
-                            fontSize: 24,
+                            fontSize: 24.sp,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
-                        const SizedBox(height: 4),
+                        SizedBox(height: 4.h),
                         Text(
                           'Please enter the payment password',
                           style: AppTextStyles.s12w400.copyWith(
                             color: textMuted,
-                            fontSize: 12,
+                            fontSize: 12.sp,
                           ),
                         ),
-                        const SizedBox(height: 22),
+                        SizedBox(height: 22.h),
                         _PasswordDots(
                           isDark: isDark,
                           filledCount: _password.length,
                         ),
-                        const SizedBox(height: 26),
+                        SizedBox(height: 26.h),
                         _Keypad(
                           textPrimary: textPrimary,
                           onKeyTap: _onKeyTap,
@@ -181,7 +182,7 @@ class _MiniCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform.translate(
-      offset: const Offset(20, 0),
+      offset: Offset(20.w, 0.h),
       child: Image.asset(
         'assets/images/card.png',
         fit: BoxFit.contain,
@@ -206,13 +207,12 @@ class _PasswordDots extends StatelessWidget {
       children: List.generate(
         6,
         (index) => Container(
-          width: 44,
-          height: 55,
+          width: 44.w, height: 55.h,
           decoration: BoxDecoration(
             color: index < filledCount
                 ? (isDark ? const Color(0xFF4A4A66) : Colors.white)
                 : (isDark ? const Color(0xFF45455F) : const Color(0xFFF7F7FD)),
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
             border: Border.all(
               color: isDark ? Colors.transparent : const Color(0xFFE7E7F2),
             ),
@@ -220,8 +220,7 @@ class _PasswordDots extends StatelessWidget {
           alignment: Alignment.center,
           child: index < filledCount
               ? Container(
-                  width: 8,
-                  height: 8,
+                  width: 8.w, height: 8.h,
                   decoration: BoxDecoration(
                     color: isDark ? Colors.white : AppColors.darkText,
                     shape: BoxShape.circle,
@@ -283,14 +282,14 @@ class _Keypad extends StatelessWidget {
             child: value == _backspace
                 ? Icon(
               Icons.backspace_outlined,
-              size: 16,
+              size: 16.w,
               color: textPrimary,
             )
                 : Text(
               value,
               style: AppTextStyles.s18w600.copyWith(
                 color: textPrimary,
-                fontSize: 18,
+                fontSize: 18.sp,
                 fontWeight: FontWeight.w700,
               ),
             ),

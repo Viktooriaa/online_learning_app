@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
@@ -27,28 +28,25 @@ class PurchaseSuccessScreen extends StatelessWidget {
         backgroundColor: background,
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 28),
+            padding: EdgeInsets.fromLTRB(20.w, 0.h, 20.w, 28.h),
             child: Column(
               children: [
                 const Spacer(flex: 5),
                 SvgPicture.asset(
-                  'assets/icons/successful_purchase.svg',
-                  width: 140,
-                  height: 140,
+                  'assets/icons/successful_purchase.svg', width: 140.w, height: 140.h,
                 ),
-                const SizedBox(height: 19),
+                SizedBox(height: 19.h),
                 Text(
                   'Successful purchase!',
                   style: AppTextStyles.s16w500.copyWith(
                     color: textPrimary,
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: 24.h),
                 SizedBox(
-                  width: double.infinity,
-                  height: 48,
+                  width: double.infinity, height: 48.h,
                   child: ElevatedButton(
                     onPressed: () {
                       AppState.completePurchase();
@@ -63,14 +61,14 @@ class PurchaseSuccessScreen extends StatelessWidget {
                       foregroundColor: Colors.white,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.r),
                       ),
                     ),
                     child: Text(
                       'Start learning',
                       style: AppTextStyles.s16w500.copyWith(
                         color: Colors.white,
-                        fontSize: 16,
+                        fontSize: 16.sp,
                       ),
                     ),
                   ),

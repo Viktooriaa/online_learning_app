@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
@@ -59,7 +60,7 @@ class SearchScreen extends StatelessWidget {
           onPressed: () => Navigator.maybePop(context),
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,
-            size: 17,
+            size: 17.w,
             color: textPrimary,
           ),
         ),
@@ -70,7 +71,7 @@ class SearchScreen extends StatelessWidget {
             color: isDark
                 ? Colors.white
                 : AppColors.darkText,
-            fontSize: 18,
+            fontSize: 18.sp,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -78,7 +79,7 @@ class SearchScreen extends StatelessWidget {
       body: SafeArea(
         top: false,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
+          padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -97,28 +98,27 @@ class SearchScreen extends StatelessWidget {
                 },
               ),
 
-              const SizedBox(height: 14),
+              SizedBox(height: 14.h),
 
               // ── Category chips ─────────────────────────────────────────
-              SizedBox(
-                height: 30,
+              SizedBox(height: 30.h,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   physics: const BouncingScrollPhysics(),
                   itemCount: _categories.length,
-                  separatorBuilder: (_, _) => const SizedBox(width: 8),
+                  separatorBuilder: (_, _) => SizedBox(width: 8.w),
                   itemBuilder: (context, index) => Container(
                     alignment: Alignment.center,
-                    padding: const EdgeInsets.symmetric(horizontal: 14),
+                    padding: EdgeInsets.symmetric(horizontal: 14.w),
                     decoration: BoxDecoration(
                       color: chipColor,
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(8.r),
                     ),
                     child: Text(
                       _categories[index],
                       style: AppTextStyles.s12w400.copyWith(
                         color: isDark ? Colors.white : AppColors.greyText,
-                        fontSize: 12,
+                        fontSize: 12.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -126,26 +126,26 @@ class SearchScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
 
               // ── Results label ──────────────────────────────────────────
               Text(
                 'Results',
                 style: AppTextStyles.s18w600.copyWith(
                   color: textPrimary,
-                  fontSize: 18,
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.w700,
                 ),
               ),
 
-              const SizedBox(height: 5),
+              SizedBox(height: 5.h),
 
               // ── Course list ────────────────────────────────────────────
               Expanded(
                 child: ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   itemCount: _courses.length,
-                  separatorBuilder: (_, _) => const SizedBox(height: 14),
+                  separatorBuilder: (_, _) => SizedBox(height: 14.h),
                   itemBuilder: (context, index) => _CourseResultCard(
                     course: _courses[index],
                     isDark: isDark,
@@ -187,44 +187,43 @@ class _SearchField extends StatelessWidget {
     isDark ? Colors.white : AppColors.darkText;
 
     return Container(
-      height: 44,
-      padding: const EdgeInsets.symmetric(horizontal: 14),
+      height: 44.h,
+      padding: EdgeInsets.symmetric(horizontal: 14.w),
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(10.r),
       ),
       child: Row(
         children: [
-          Icon(Icons.search_rounded, size: 18, color: iconColor),
-          const SizedBox(width: 10),
+          Icon(Icons.search_rounded, size: 18.w, color: iconColor),
+          SizedBox(width: 10.w),
           Expanded(
             child: Text(
               'Product Design',
               style: AppTextStyles.s14w400.copyWith(
                 color: textColor,
-                fontSize: 14,
+                fontSize: 14.sp,
               ),
             ),
           ),
           // X кнопка
           Container(
-            width: 16,
-            height: 16,
+            width: 16.w, height: 16.h,
             decoration: BoxDecoration(
               color: iconColor,
               shape: BoxShape.circle,
             ),
             child: Icon(
               Icons.close_rounded,
-              size: 13,
+              size: 13.w,
               color: isDark ? const Color(0xFF303049) : Colors.white,
             ),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12.w),
           // Filter icon
           GestureDetector(
             onTap: onFilterTap,
-            child: Icon(Icons.tune_rounded, size: 20, color: iconColor),
+            child: Icon(Icons.tune_rounded, size: 20.w, color: iconColor),
           ),
         ],
       ),
@@ -254,18 +253,18 @@ class _CourseResultCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 96,
-        padding: const EdgeInsets.fromLTRB(8, 8, 12, 8),
+        height: 96.h,
+        padding: EdgeInsets.fromLTRB(8.w, 8.h, 12.w, 8.h),
         decoration: BoxDecoration(
           color: backgroundColor,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(10.r),
           boxShadow: isDark
               ? null
               : [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.07),
-              blurRadius: 20,
-              offset: const Offset(0, 6),
+              blurRadius: 20.r,
+              offset: Offset(0, 6.h),
             ),
           ],
         ),
@@ -273,16 +272,15 @@ class _CourseResultCard extends StatelessWidget {
           children: [
             // Thumbnail
             Container(
-              width: 68,
-              height: 68,
+              width: 68.w, height: 68.h,
               decoration: BoxDecoration(
                 color: isDark
                     ? const Color(0xFFC4C4C4)
                     : const Color(0xFFC4C4C4),
-                borderRadius: BorderRadius.circular(6),
+                borderRadius: BorderRadius.circular(6.r),
               ),
             ),
-            const SizedBox(width: 12),
+            SizedBox(width: 12.w),
 
             // Info
             Expanded(
@@ -297,17 +295,17 @@ class _CourseResultCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: AppTextStyles.s14w500.copyWith(
                       color: isDark ? Colors.white : AppColors.darkText,
-                      fontSize: 14,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(height: 3),
+                  SizedBox(height: 3.h),
                   // Author
                   Row(
                     children: [
                       Icon(Icons.person_outline_rounded,
-                          size: 11, color: subtitleColor),
-                      const SizedBox(width: 3),
+                          size: 11.w, color: subtitleColor),
+                      SizedBox(width: 3.w),
                       Flexible(
                         child: Text(
                           course.author,
@@ -315,13 +313,13 @@ class _CourseResultCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: AppTextStyles.s12w400.copyWith(
                             color: subtitleColor,
-                            fontSize: 12,
+                            fontSize: 12.sp,
                           ),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 6),
+                  SizedBox(height: 6.h),
                   // Price + hours
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -330,33 +328,33 @@ class _CourseResultCard extends StatelessWidget {
                         course.price,
                         style: AppTextStyles.s16w500.copyWith(
                           color: AppColors.primary,
-                          fontSize: 16,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      const SizedBox(width: 14),
+                      SizedBox(width: 14.w),
                       // Hours: pill у light mode, простий текст у dark
                       isDark
                           ? Text(
                         course.hours,
                         style: AppTextStyles.s10w400.copyWith(
                           color: AppColors.orange,
-                          fontSize: 10,
+                          fontSize: 10.sp,
                         ),
                       )
                           : Container(
-                        height: 16,
+                        height: 16.h,
                         alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        padding: EdgeInsets.symmetric(horizontal: 8.w),
                         decoration: BoxDecoration(
                           color: const Color(0xFFFFF0E8),
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(20.r),
                         ),
                         child: Text(
                           course.hours,
                           style: AppTextStyles.s10w400.copyWith(
                             color: AppColors.orange,
-                            fontSize: 9,
+                            fontSize: 9.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ),

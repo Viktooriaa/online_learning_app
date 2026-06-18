@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
@@ -137,7 +138,7 @@ class _DetailHero extends StatelessWidget {
               onTap: () => Navigator.maybePop(context),
               child: Icon(
                 Icons.arrow_back_ios_new_rounded,
-                size: 18,
+                size: 18.w,
                 color: AppColors.darkText,
               ),
             ),
@@ -184,7 +185,7 @@ class _CourseContentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+      borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
       child: ColoredBox(
         color: backgroundColor,
         child: SingleChildScrollView(
@@ -202,33 +203,31 @@ class _CourseContentCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _CourseHeader(textPrimary: textPrimary, textMuted: textMuted),
-                  const SizedBox(height: 24),
+                  SizedBox(height: 24.h),
                   Text(
                     'About this course',
                     style: AppTextStyles.s14w500.copyWith(
                       color: textPrimary,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                      height: 1,
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w700, height: 1,
                     ),
                   ),
-                  const SizedBox(height: 14),
+                  SizedBox(height: 14.h),
                   Text(
                     'Sed ut perspiciatis unde omnis iste natus error sit\nvoluptatem accusantium doloremque laudantium.',
                     style: AppTextStyles.s10w400.copyWith(
                       color: textMuted,
-                      fontSize: 12.4,
-                      height: 1.45,
+                      fontSize: 12.4.sp, height: 1.45,
                     ),
                   ),
-                  const SizedBox(height: 18),
+                  SizedBox(height: 18.h),
                   Center(
                     child: Icon(Icons.visibility_off_outlined,
                       color: isDark ? textMuted : AppColors.darkText,
                       size: isDark ? 24 : 16,
                     ),
                   ),
-                  const SizedBox(height: 23),
+                  SizedBox(height: 23.h),
                   ...lessons.map(
                     (lesson) => _LessonTile(
                       lesson: lesson,
@@ -292,9 +291,8 @@ class _CourseHeader extends StatelessWidget {
                 'Product Design v1.0',
                 style: AppTextStyles.s16w500.copyWith(
                   color: textPrimary,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  height: 1.1,
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w700, height: 1.1,
                 ),
               ),
             ),
@@ -302,22 +300,20 @@ class _CourseHeader extends StatelessWidget {
               '\$74.00',
               style: AppTextStyles.s16w500.copyWith(
                 color: AppColors.primary,
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-                height: 1.1,
+                fontSize: 20.sp,
+                fontWeight: FontWeight.w700, height: 1.1,
               ),
             ),
           ],
         ),
-        const SizedBox(height: 7),
+        SizedBox(height: 7.h),
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
             '6h 14min - 24 Lessons',
             style: AppTextStyles.s10w400.copyWith(
               color: textMuted,
-              fontSize: 13,
-              height: 1,
+              fontSize: 13.sp, height: 1,
             ),
           ),
         ),
@@ -348,22 +344,20 @@ class _LessonTile extends StatelessWidget {
         : const Color(0xFFC8D1FF);
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 23),
+      padding: EdgeInsets.only(bottom: 23.h),
       child: Row(
         children: [
-          SizedBox(
-            width: 40,
+          SizedBox(width: 40.w,
             child: Text(
               lesson.number.toString().padLeft(2, '0'),
               style: AppTextStyles.s18w600.copyWith(
                 color: const Color(0xFFB7B9D8),
-                fontSize: 24,
-                fontWeight: FontWeight.w500,
-                height: 1,
+                fontSize: 24.sp,
+                fontWeight: FontWeight.w500, height: 1,
               ),
             ),
           ),
-          const SizedBox(width: 22),
+          SizedBox(width: 22.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -374,12 +368,11 @@ class _LessonTile extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: AppTextStyles.s12w500.copyWith(
                     color: textPrimary,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                    height: 1,
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w500, height: 1,
                   ),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
                 Row(
                   children: [
                     Text(
@@ -388,19 +381,18 @@ class _LessonTile extends StatelessWidget {
                         color: lesson.title == 'Welcome to the Course'
                             ? AppColors.primary
                             : const Color(0xFFB8B8D2),
-                        fontSize: 11,
-                        fontWeight: FontWeight.w500,
-                        height: 1.2,
+                        fontSize: 11.sp,
+                        fontWeight: FontWeight.w500, height: 1.2,
                       ),
                     ),
 
                     if (lesson.title == 'Welcome to the Course') ...[
-                      const SizedBox(width: 4),
+                      SizedBox(width: 4.w),
 
-                      const Icon(
+                      Icon(
                         Icons.check_circle,
                         color: AppColors.primary,
-                        size: 11,
+                        size: 11.w,
                       ),
                     ],
                   ],
@@ -408,12 +400,11 @@ class _LessonTile extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: 14),
+          SizedBox(width: 14.w),
           GestureDetector(
             onTap: lesson.isLocked ? null : onPlayTap,
             child: Container(
-              width: 49,
-              height: 49,
+              width: 49.w, height: 49.h,
               decoration: BoxDecoration(
                 color: lesson.isLocked ? lockBackground : AppColors.primary,
                 shape: BoxShape.circle,
@@ -454,7 +445,7 @@ class _BottomActions extends StatelessWidget {
             : [
                 BoxShadow(
                   color: Colors.black.withValues(alpha: 0.07),
-                  blurRadius: 24,
+                  blurRadius: 24.r,
                   offset: const Offset(0, -8),
                 ),
               ],
@@ -464,23 +455,21 @@ class _BottomActions extends StatelessWidget {
           GestureDetector(
             onTap: onBookmarkTap,
             child: Container(
-              width: 92,
-              height: 52,
+              width: 92.w, height: 52.h,
               decoration: BoxDecoration(
                 color: const Color(0xFFFFEDF1),
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(12.r),
               ),
               child: Icon(
                 isBookmarked ? Icons.star_rounded : Icons.star_border_rounded,
                 color: const Color(0xFFFF6B35),
-                size: 30,
+                size: 30.w,
               ),
             ),
           ),
-          const SizedBox(width: 15),
+          SizedBox(width: 15.w),
           Expanded(
-            child: SizedBox(
-              height: 52,
+            child: SizedBox(height: 52.h,
               child: ElevatedButton(
                 onPressed: () {
                   NetworkGuard.push(
@@ -494,14 +483,14 @@ class _BottomActions extends StatelessWidget {
                   elevation: 0,
                   shadowColor: Colors.transparent,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(12.r),
                   ),
                 ),
                 child: Text(
                   'Buy Now',
                   style: AppTextStyles.s12w500.copyWith(
                     color: Colors.white,
-                    fontSize: 18,
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
@@ -133,26 +134,25 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
     return Container(
       decoration: BoxDecoration(
         color: bg,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28.r)),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           // Drag handle
-          const SizedBox(height: 10),
+          SizedBox(height: 10.h),
           Container(
-            width: 40,
-            height: 4,
+            width: 40.w, height: 4.h,
             decoration: BoxDecoration(
               color: chipText.withValues(alpha: 0.3),
-              borderRadius: BorderRadius.circular(2),
+              borderRadius: BorderRadius.circular(2.r),
             ),
           ),
-          const SizedBox(height: 6),
+          SizedBox(height: 6.h),
 
           Flexible(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(24, 12, 24, 0),
+              padding: EdgeInsets.fromLTRB(24.w, 12.h, 24.w, 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -161,10 +161,8 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                     children: [
                       GestureDetector(
                         onTap: () => Navigator.pop(context),
-                        child: SizedBox(
-                          width: 36,
-                          height: 36,
-                          child: Icon(Icons.close, size: 20, color: titleColor),
+                        child: SizedBox(width: 36.w, height: 36.h,
+                          child: Icon(Icons.close, size: 20.w, color: titleColor),
                         ),
                       ),
                       Expanded(
@@ -178,15 +176,15 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 36),
+                      SizedBox(width: 36.w),
                     ],
                   ),
 
-                  const SizedBox(height: 24),
+                  SizedBox(height: 24.h),
 
                   // ── Categories ─────────────────────────────────────────────
                   _SectionTitle(title: 'Categories', color: sectionColor),
-                  const SizedBox(height: 14),
+                  SizedBox(height: 14.h),
                   Wrap(
                     spacing: 10,
                     runSpacing: 10,
@@ -206,11 +204,11 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                     }).toList(),
                   ),
 
-                  const SizedBox(height: 28),
+                  SizedBox(height: 28.h),
 
                   // ── Price ──────────────────────────────────────────────────
                   _SectionTitle(title: 'Price', color: sectionColor),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8.h),
 
                   SliderTheme(
                     data: SliderTheme.of(context).copyWith(
@@ -231,8 +229,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                   ),
 
                   // Лейбли під повзунками
-                  SizedBox(
-                    height: 28,
+                  SizedBox(height: 28.h,
 
                     child: LayoutBuilder(
                       builder: (context, constraints) {
@@ -256,8 +253,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                                 constraints.maxWidth - 40,
                               ),
 
-                              child: SizedBox(
-                                width: 40,
+                              child: SizedBox(width: 40.w,
 
                                 child: Center(
                                   child: _PriceLabel(
@@ -274,8 +270,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                                 constraints.maxWidth - 40,
                               ),
 
-                              child: SizedBox(
-                                width: 40,
+                              child: SizedBox(width: 40.w,
 
                                 child: Center(
                                   child: _PriceLabel(
@@ -291,11 +286,11 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                     ),
                   ),
 
-                  const SizedBox(height: 28),
+                  SizedBox(height: 28.h),
 
                   // ── Duration ───────────────────────────────────────────────
                   _SectionTitle(title: 'Duration', color: sectionColor),
-                  const SizedBox(height: 14),
+                  SizedBox(height: 14.h),
                   Wrap(
                     spacing: 10,
                     runSpacing: 10,
@@ -315,7 +310,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                     }).toList(),
                   ),
 
-                  const SizedBox(height: 32),
+                  SizedBox(height: 32.h),
                 ],
               ),
             ),
@@ -331,21 +326,18 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
             ),
             child: Row(
               children: [
-                SizedBox(
-                  width: 90,
-                  height: 44,
+                SizedBox(width: 90.w, height: 44.h,
 
                   child: OutlinedButton(
                     onPressed: _clear,
 
                     style: OutlinedButton.styleFrom(
-                      side: const BorderSide(
-                        color: AppColors.primary,
-                        width: 1,
+                      side: BorderSide(
+                        color: AppColors.primary, width: 1.w,
                       ),
 
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
+                        borderRadius: BorderRadius.circular(14.r),
                       ),
 
                       backgroundColor: isDark
@@ -364,11 +356,10 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                   ),
                 ),
 
-                const SizedBox(width: 14),
+                SizedBox(width: 14.w),
 
                 Expanded(
-                  child: SizedBox(
-                    height: 50,
+                  child: SizedBox(height: 50.h,
 
                     child: ElevatedButton(
                       onPressed: () => Navigator.pop(context),
@@ -378,7 +369,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                         elevation: 0,
 
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(14.r),
                         ),
                       ),
 
@@ -413,7 +404,7 @@ class _SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) => Text(
     title,
     style: AppTextStyles.s14w400.copyWith(
-      fontSize: 16,
+      fontSize: 16.sp,
       fontWeight: FontWeight.w700,
       color: color,
     ),
@@ -443,21 +434,21 @@ class _Chip extends StatelessWidget {
       onTap: onTap,
 
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8),
 
         decoration: BoxDecoration(
           color: selected
               ? AppColors.primary
               : (isDark ? const Color(0xFF858597) : const Color(0xFFF4F3FD)),
 
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(10.r),
         ),
 
         child: Text(
           label,
 
           style: TextStyle(
-            fontSize: 14,
+            fontSize: 14.sp,
 
             color: selected
                 ? Colors.white
@@ -481,7 +472,7 @@ class _PriceLabel extends StatelessWidget {
       '\$${value.round()}',
       textAlign: TextAlign.center,
 
-      style: AppTextStyles.s12w400.copyWith(fontSize: 13, color: color),
+      style: AppTextStyles.s12w400.copyWith(fontSize: 13.sp, color: color),
     );
   }
 }

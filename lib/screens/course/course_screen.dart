@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
@@ -26,13 +27,13 @@ class _CourseScreenState extends State<CourseScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
 
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
 
               children: [
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
 
                 // HEADER
                 Row(
@@ -50,11 +51,10 @@ class _CourseScreenState extends State<CourseScreen> {
                     ),
 
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
+                      borderRadius: BorderRadius.circular(100.r),
 
                       child: Image.asset(
-                        width: 36,
-                        height: 50,
+                        width: 36.w, height: 50.h,
                         'assets/images/avatar.png',
                         fit: BoxFit.cover,
                       ),
@@ -62,27 +62,27 @@ class _CourseScreenState extends State<CourseScreen> {
                   ],
                 ),
 
-                const SizedBox(height: 15),
+                SizedBox(height: 15.h),
 
                 // SEARCH
                 Container(
-                  height: 50,
+                  height: 50.h,
 
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
 
                   decoration: BoxDecoration(
                     color: isDark
                         ? AppColors.cardDark
                         : AppColors.findCourseBox,
 
-                    borderRadius: BorderRadius.circular(14),
+                    borderRadius: BorderRadius.circular(14.r),
                   ),
 
                   child: Row(
                     children: [
                       Icon(Icons.search, color: AppColors.border),
 
-                      const SizedBox(width: 10),
+                      SizedBox(width: 10.w),
 
                       Expanded(
                         child: TextField(
@@ -111,14 +111,14 @@ class _CourseScreenState extends State<CourseScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 4),
+                SizedBox(height: 4.h),
 
                 // BANNERS
                 Row(
                   children: [
                     Expanded(
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(16.r),
 
                         child: Image.asset(
                           'assets/images/language.png',
@@ -127,11 +127,11 @@ class _CourseScreenState extends State<CourseScreen> {
                       ),
                     ),
 
-                    const SizedBox(width: 15),
+                    SizedBox(width: 15.w),
 
                     Expanded(
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(16.r),
 
                         child: Image.asset(
                           'assets/images/painting.png',
@@ -142,7 +142,7 @@ class _CourseScreenState extends State<CourseScreen> {
                   ],
                 ),
 
-                const SizedBox(height: 36),
+                SizedBox(height: 36.h),
 
                 Text(
                   'Choice your course',
@@ -152,21 +152,21 @@ class _CourseScreenState extends State<CourseScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 16),
+                SizedBox(height: 16.h),
 
                 Row(
                   children: [
                     _chip('All', 0),
-                    const SizedBox(width: 10),
+                    SizedBox(width: 10.w),
 
                     _chip('Popular', 1),
-                    const SizedBox(width: 10),
+                    SizedBox(width: 10.w),
 
                     _chip('New', 2),
                   ],
                 ),
 
-                const SizedBox(height: 24),
+                SizedBox(height: 24.h),
 
                 _courseCard(
                   isDark,
@@ -177,7 +177,7 @@ class _CourseScreenState extends State<CourseScreen> {
                   onTap: () => _openCourseDetail(hasVideos: true),
                 ),
 
-                const SizedBox(height: 14),
+                SizedBox(height: 14.h),
 
                 _courseCard(
                   isDark,
@@ -188,7 +188,7 @@ class _CourseScreenState extends State<CourseScreen> {
                   onTap: () => _openCourseDetail(hasVideos: false),
                 ),
 
-                const SizedBox(height: 14),
+                SizedBox(height: 14.h),
 
                 _courseCard(
                   isDark,
@@ -199,7 +199,7 @@ class _CourseScreenState extends State<CourseScreen> {
                   onTap: () => _openCourseDetail(hasVideos: true),
                 ),
 
-                const SizedBox(height: 120),
+                SizedBox(height: 120.h),
               ],
             ),
           ),
@@ -225,17 +225,16 @@ class _CourseScreenState extends State<CourseScreen> {
         });
       },
       child: Container(
-        width: text == 'All' ? 73 : null,
-        height: 28,
+        width: text == 'All' ? 73 : null, height: 28.h,
 
         alignment: Alignment.center,
 
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
 
         decoration: BoxDecoration(
           color: selected ? AppColors.primary : AppColors.greyText,
 
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(14.r),
         ),
 
         child: Text(
@@ -259,20 +258,20 @@ class _CourseScreenState extends State<CourseScreen> {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 96,
+        height: 96.h,
 
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8),
 
         decoration: BoxDecoration(
           color: isDark ? AppColors.cardDark : AppColors.lightText,
 
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(16.r),
 
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.04),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
+              blurRadius: 10.r,
+              offset: Offset(0, 4.h),
             ),
           ],
         ),
@@ -280,15 +279,14 @@ class _CourseScreenState extends State<CourseScreen> {
         child: Row(
           children: [
             Container(
-              width: 68,
-              height: 68,
+              width: 68.w, height: 68.h,
               decoration: BoxDecoration(
                 color: AppColors.block,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(12.r),
               ),
             ),
 
-            const SizedBox(width: 12),
+            SizedBox(width: 12.w),
 
             Expanded(
               child: Column(
@@ -305,11 +303,11 @@ class _CourseScreenState extends State<CourseScreen> {
                     ),
                   ),
 
-                  const SizedBox(height: 2),
+                  SizedBox(height: 2.h),
                   Row(
                     children: [
-                      Icon(Icons.person, size: 12, color: AppColors.greyText),
-                      const SizedBox(width: 4),
+                      Icon(Icons.person, size: 12.w, color: AppColors.greyText),
+                      SizedBox(width: 4.w),
                       Text(
                         author,
 
@@ -320,7 +318,7 @@ class _CourseScreenState extends State<CourseScreen> {
                     ],
                   ),
 
-                  const SizedBox(height: 6),
+                  SizedBox(height: 6.h),
 
                   Row(
                     children: [
@@ -332,7 +330,7 @@ class _CourseScreenState extends State<CourseScreen> {
                         ),
                       ),
 
-                      const SizedBox(width: 6),
+                      SizedBox(width: 6.w),
 
                       isDark
                           ? Text(
@@ -342,21 +340,20 @@ class _CourseScreenState extends State<CourseScreen> {
                               ),
                             )
                           : Container(
-                              width: 57,
-                              height: 15,
+                              width: 57.w, height: 15.h,
 
                               alignment: Alignment.center,
 
                               decoration: BoxDecoration(
                                 color: AppColors.softWhite,
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(20.r),
                               ),
 
                               child: Text(
                                 hours,
                                 style: AppTextStyles.s10w400.copyWith(
                                   color: AppColors.orange,
-                                  fontSize: 8,
+                                  fontSize: 8.sp,
                                 ),
                               ),
                             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
@@ -71,16 +72,16 @@ class _ContinuePhoneScreenState extends State<ContinuePhoneScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 52),
+            SizedBox(height: 52.h),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: Row(
                 children: [
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
                     child: Icon(
                       Icons.arrow_back_ios_new,
-                      size: 18,
+                      size: 18.w,
                       color:
                           isDark ? AppColors.lightText : AppColors.darkText,
                     ),
@@ -97,61 +98,57 @@ class _ContinuePhoneScreenState extends State<ContinuePhoneScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 18),
+                  SizedBox(width: 18.w),
                 ],
               ),
             ),
-            const SizedBox(height: 26),
-            SizedBox(
-              width: 124,
-              height: 124,
+            SizedBox(height: 26.h),
+            SizedBox(width: 124.w, height: 124.h,
               child: Image.asset(
                 'assets/images/continue_with_phone.png',
                 fit: BoxFit.contain,
               ),
             ),
-            const SizedBox(height: 42),
+            SizedBox(height: 42.h),
             Expanded(
               child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.only(
-                  left: 18,
+                padding: EdgeInsets.only(left: 18.w,
                   right: 18,
                   top: 12,
                   bottom: 22,
                 ),
                 decoration: BoxDecoration(
                   color: isDark ? AppColors.cardDark : Colors.white,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(18),
-                    topRight: Radius.circular(18),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(18.r),
+                    topRight: Radius.circular(18.r),
                   ),
                 ),
                 child: Column(
                   children: [
-                    const SizedBox(height: 14),
+                    SizedBox(height: 14.h),
                     Text(
                       'Enter Your Phone Number',
                       style: AppTextStyles.s14w400.copyWith(
                         color: AppColors.greyText,
                       ),
                     ),
-                    const SizedBox(height: 23),
+                    SizedBox(height: 23.h),
                     Container(
-                      height: 58,
+                      height: 58.h,
                       decoration: BoxDecoration(
                         color: isDark
                             ? AppColors.darkBackground
                             : AppColors.lightText,
-                        borderRadius: BorderRadius.circular(18),
+                        borderRadius: BorderRadius.circular(18.r),
                         border: Border.all(color: AppColors.border),
                       ),
                       child: Row(
                         children: [
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 22,
+                              padding: EdgeInsets.symmetric(horizontal: 22.w,
                               ),
                               child: Text(
                                 _displayPhone,
@@ -167,16 +164,15 @@ class _ContinuePhoneScreenState extends State<ContinuePhoneScreen> {
                             ),
                           ),
                           Container(
-                            width: 150,
-                            height: 58,
+                            width: 150.w, height: 58.h,
                             decoration: BoxDecoration(
                               color: AppColors.primary,
-                              borderRadius: BorderRadius.circular(18),
+                              borderRadius: BorderRadius.circular(18.r),
                             ),
                             child: Material(
                               color: Colors.transparent,
                               child: InkWell(
-                                borderRadius: BorderRadius.circular(18),
+                                borderRadius: BorderRadius.circular(18.r),
                                 onTap: _continue,
                                 child: Center(
                                   child: Text(
@@ -193,10 +189,10 @@ class _ContinuePhoneScreenState extends State<ContinuePhoneScreen> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 51),
+                    SizedBox(height: 51.h),
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 36),
+                        padding: EdgeInsets.symmetric(horizontal: 36.w),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -206,7 +202,7 @@ class _ContinuePhoneScreenState extends State<ContinuePhoneScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const SizedBox(width: 24),
+                                SizedBox(width: 24.w),
                                 _numpadKey(
                                   label: '0',
                                   isDark: isDark,
@@ -257,14 +253,12 @@ class _ContinuePhoneScreenState extends State<ContinuePhoneScreen> {
     return GestureDetector(
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
-      child: SizedBox(
-        width: 48,
-        height: 48,
+      child: SizedBox(width: 48.w, height: 48.h,
         child: Center(
           child: icon != null
               ? Icon(
                   icon,
-                  size: 20,
+                  size: 20.w,
                   color: isDark ? AppColors.lightText : AppColors.darkText,
                 )
               : Text(

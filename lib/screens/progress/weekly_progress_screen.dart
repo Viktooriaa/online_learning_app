@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 //import 'package:online_learning_app/screens/main/home_screen.dart';
 import 'package:online_learning_app/screens/main/main_screen.dart';
 
@@ -33,7 +34,7 @@ class WeeklyProgressScreen extends StatelessWidget {
         body: SafeArea(
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 26),
+              padding: EdgeInsets.symmetric(horizontal: 26.w),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -49,7 +50,7 @@ class WeeklyProgressScreen extends StatelessWidget {
                       );
                     },
                   ),
-                  const SizedBox(height: 28),
+                  SizedBox(height: 28.h),
                   GestureDetector(
                     onTap: () => Navigator.of(context).push(
                       MaterialPageRoute(
@@ -57,16 +58,15 @@ class WeeklyProgressScreen extends StatelessWidget {
                       ),
                     ),
                     child: Container(
-                      width: 44,
-                      height: 44,
+                      width: 44.w, height: 44.h,
                       decoration: BoxDecoration(
                         color: Colors.white.withValues(alpha: 0.22),
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(
+                      child: Icon(
                         Icons.close_rounded,
                         color: Colors.white,
-                        size: 28,
+                        size: 28.w,
                       ),
                     ),
                   ),
@@ -97,14 +97,12 @@ class _ProgressCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 291,
-      height: 442,
+    return SizedBox(width: 291.w, height: 442.h,
       child: Container(
-        padding: const EdgeInsets.fromLTRB(16, 18, 16, 14),
+        padding: EdgeInsets.fromLTRB(16.w, 18.h, 16.w, 14.h),
         decoration: BoxDecoration(
           color: cardColor,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.r),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,7 +112,7 @@ class _ProgressCard extends StatelessWidget {
               'Clocking in!',
               style: AppTextStyles.s24w700.copyWith(
                 color: textPrimary,
-                fontSize: 24,
+                fontSize: 24.sp,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -122,11 +120,11 @@ class _ProgressCard extends StatelessWidget {
               isDark ? 'GOOD JOB!' : 'GOOD JOB',
               style: AppTextStyles.s14w400.copyWith(
                 color: textMuted,
-                fontSize: 14,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w600,
               ),
             ),
-            const SizedBox(height: 39),
+            SizedBox(height: 39.h),
             Row(
               children: [
                 Expanded(
@@ -149,7 +147,7 @@ class _ProgressCard extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 23),
+            SizedBox(height: 23.h),
             _Metric(
               label: 'Today days',
               value: '554',
@@ -157,25 +155,24 @@ class _ProgressCard extends StatelessWidget {
               textPrimary: textPrimary,
               textMuted: textMuted,
             ),
-            const SizedBox(height: 33),
+            SizedBox(height: 33.h),
             Center(
               child: Text(
                 'Record of this week',
                 style: AppTextStyles.s12w400.copyWith(
                   color: textMuted,
-                  fontSize: 12,
+                  fontSize: 12.sp,
                 ),
               ),
             ),
-            const SizedBox(height: 14),
+            SizedBox(height: 14.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
                 7,
                 (index) => Container(
-                  width: 28,
-                  height: 28,
-                  margin: const EdgeInsets.symmetric(horizontal: 4),
+                  width: 28.w, height: 28.h,
+                  margin: EdgeInsets.symmetric(horizontal: 4.w),
                   decoration: BoxDecoration(
                     color: index < 4
                         ? AppColors.primary
@@ -189,17 +186,16 @@ class _ProgressCard extends StatelessWidget {
                     '${index + 1}',
                     style: AppTextStyles.s12w400.copyWith(
                       color: index < 4 ? Colors.white : AppColors.greyText,
-                      fontSize: 12,
+                      fontSize: 12.sp,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 38),
+            SizedBox(height: 38.h),
             SizedBox(
-              width: double.infinity,
-              height: 50,
+              width: double.infinity, height: 50.h,
               child: ElevatedButton(
                 onPressed: onShare,
                 style: ElevatedButton.styleFrom(
@@ -207,14 +203,14 @@ class _ProgressCard extends StatelessWidget {
                   foregroundColor: Colors.white,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(12.r),
                   ),
                 ),
                 child: Text(
                   'Share',
                   style: AppTextStyles.s16w500.copyWith(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: 16.sp,
                   ),
                 ),
               ),
@@ -248,14 +244,14 @@ class _Metric extends StatelessWidget {
       children: [
         Text(
           label,
-          style: AppTextStyles.s12w400.copyWith(color: textMuted, fontSize: 12),
+          style: AppTextStyles.s12w400.copyWith(color: textMuted, fontSize: 12.sp),
         ),
-        const SizedBox(height: 5),
+        SizedBox(height: 5.h),
         RichText(
           text: TextSpan(
             style: AppTextStyles.s20w700.copyWith(
               color: textPrimary,
-              fontSize: 20,
+              fontSize: 20.sp,
               fontWeight: FontWeight.w500,
             ),
             children: [
@@ -264,7 +260,7 @@ class _Metric extends StatelessWidget {
                 text: ' $suffix',
                 style: AppTextStyles.s12w400.copyWith(
                   color: textMuted,
-                  fontSize: 12,
+                  fontSize: 12.sp,
                 ),
               ),
             ],

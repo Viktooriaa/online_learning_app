@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_learning_app/screens/auth/continue_phone_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
@@ -49,8 +50,7 @@ class _SignUpScreenState
                   ? AppColors.darkBackground
                   : AppColors.lightBackground,
 
-              padding: const EdgeInsets.only(
-                left: 24,
+              padding: EdgeInsets.only(left: 24.w,
                 right: 24,
                 top: 50,
                 bottom: 24,
@@ -73,13 +73,11 @@ class _SignUpScreenState
 
                       color: isDark
                           ? AppColors.lightText
-                          : AppColors.darkText,
-
-                      height: 1,
+                          : AppColors.darkText, height: 1,
                     ),
                   ),
 
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8.h),
 
                   Text(
 
@@ -104,8 +102,7 @@ class _SignUpScreenState
 
                 width: double.infinity,
 
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
+                padding: EdgeInsets.symmetric(horizontal: 24.w,
                   vertical: 24,
                 ),
 
@@ -115,10 +112,10 @@ class _SignUpScreenState
                       ? const Color(0xFF2B2B45)
                       : Colors.white,
                   borderRadius:
-                  const BorderRadius.only(
+                  BorderRadius.only(
 
-                    topLeft: Radius.circular(12),
-                    topRight: Radius.circular(12),
+                    topLeft: Radius.circular(12.r),
+                    topRight: Radius.circular(12.r),
                   ),
 
                 ),
@@ -145,14 +142,14 @@ class _SignUpScreenState
                         ),
                       ),
 
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.h),
 
                       const CustomTextField(
                         hintText:
                         'Cooper_Kristin@gmail.com',
                       ),
 
-                      const SizedBox(height: 25),
+                      SizedBox(height: 25.h),
 
                       // PASSWORD
                       Text(
@@ -167,14 +164,14 @@ class _SignUpScreenState
                         ),
                       ),
 
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.h),
 
                       const CustomTextField(
                         hintText: '••••••••••••',
                         obscureText: true,
                       ),
 
-                      const SizedBox(height: 24),
+                      SizedBox(height: 24.h),
 
                       // BUTTON
                       PrimaryButton(
@@ -192,7 +189,7 @@ class _SignUpScreenState
                         },
                       ),
 
-                      const SizedBox(height: 14),
+                      SizedBox(height: 14.h),
 
                       // CHECKBOX
                       Row(
@@ -213,11 +210,9 @@ class _SignUpScreenState
 
                             child: Container(
 
-                              width: 14,
-                              height: 14,
+                              width: 14.w, height: 14.h,
 
-                              margin: const EdgeInsets.only(
-                                top: 2,
+                              margin: EdgeInsets.only(top: 2.h,
                               ),
 
                               decoration: BoxDecoration(
@@ -231,14 +226,14 @@ class _SignUpScreenState
                                 ),
 
                                 borderRadius:
-                                BorderRadius.circular(3),
+                                BorderRadius.circular(3.r),
                               ),
 
                               child: isChecked
 
-                                  ? const Icon(
+                                  ? Icon(
                                 Icons.check,
-                                size: 10,
+                                size: 10.w,
                                 color: Colors.white,
                               )
 
@@ -246,7 +241,7 @@ class _SignUpScreenState
                             ),
                           ),
 
-                          const SizedBox(width: 8),
+                          SizedBox(width: 8.w),
 
                           Expanded(
 
@@ -256,15 +251,14 @@ class _SignUpScreenState
 
                               style:
                               AppTextStyles.s12w400.copyWith(
-                                color: AppColors.greyText,
-                                height: 1.4,
+                                color: AppColors.greyText, height: 1.4,
                               ),
                             ),
                           ),
                         ],
                       ),
 
-                      const SizedBox(height: 22),
+                      SizedBox(height: 22.h),
 
                       // LOGIN
                       Center(
@@ -314,8 +308,7 @@ class _SignUpScreenState
                                     style:
                                     AppTextStyles.s12w400.copyWith(
                                       color: AppColors.primary,
-                                      fontWeight: FontWeight.w700,
-                                      height: 1,
+                                      fontWeight: FontWeight.w700, height: 1,
                                       decoration: TextDecoration.underline,
                                       decorationColor: AppColors.primary,
                                       decorationThickness: 1.5,

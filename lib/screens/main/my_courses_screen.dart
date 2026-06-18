@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
@@ -36,7 +37,7 @@ class _MyCoursesContent extends StatelessWidget {
       backgroundColor: background,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 18, 20, 0),
+          padding: EdgeInsets.fromLTRB(20.w, 18.h, 20.w, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -49,7 +50,7 @@ class _MyCoursesContent extends StatelessWidget {
                       onTap: () => Navigator.maybePop(context),
                       child: Icon(
                         Icons.arrow_back_ios_new_rounded,
-                        size: 18,
+                        size: 18.w,
                         color: titleColor,
                       ),
                     ),
@@ -58,17 +59,17 @@ class _MyCoursesContent extends StatelessWidget {
                     'My courses',
                     style: AppTextStyles.s18w600.copyWith(
                       color: titleColor,
-                      fontSize: 18,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12.h),
               _LearnedTodayCard(
                 isDark: isDark,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               Expanded(
                 child: GridView(
                   physics: const BouncingScrollPhysics(),
@@ -131,30 +132,30 @@ class _LearnedTodayCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 96,
-      padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
+      height: 96.h,
+      padding: EdgeInsets.fromLTRB(12.w, 10.h, 12.w, 10.h),
       decoration: BoxDecoration(
         color: isDark ? AppColors.cardDark : AppColors.lightText,
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(18.r),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.04),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
+            blurRadius: 10.r,
+            offset: Offset(0, 4.h),
           ),
         ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 20),
+          SizedBox(height: 20.h),
           Text(
             'Learned today',
             style: AppTextStyles.s12w400.copyWith(
               color: AppColors.greyText,
             ),
           ),
-          const SizedBox(height: 5),
+          SizedBox(height: 5.h),
           RichText(
             text: TextSpan(
               children: [
@@ -162,32 +163,30 @@ class _LearnedTodayCard extends StatelessWidget {
                   text: '46min',
                   style: AppTextStyles.s20w700.copyWith(
                     color: isDark ? Colors.white : AppColors.darkText,
-                    fontSize: 18,
-                    height: 1,
+                    fontSize: 18.sp, height: 1,
                   ),
                 ),
                 TextSpan(
                   text: ' /60min',
                   style: AppTextStyles.s10w400.copyWith(
                     color: AppColors.greyText,
-                    fontSize: 8,
+                    fontSize: 8.sp,
                   ),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 3),
+          SizedBox(height: 3.h),
           Container(
-            width: double.infinity,
-            height: 6,
+            width: double.infinity, height: 6.h,
             decoration: BoxDecoration(
               color: AppColors.progressBackground,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
             ),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Container(
-                width: 210,
+                width: 210.w,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
@@ -197,7 +196,7 @@ class _LearnedTodayCard extends StatelessWidget {
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.r),
                 ),
               ),
             ),
@@ -234,37 +233,34 @@ class _CourseProgressCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.fromLTRB(14, 18, 14, 14),
+        padding: EdgeInsets.fromLTRB(14.w, 18.h, 14.w, 14.h),
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(14.r),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 23),
+            SizedBox(height: 23.h),
             Text(
               title,
               style: AppTextStyles.s16w500.copyWith(
                 color: textColor,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-                height: 1.25,
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w700, height: 1.25,
               ),
             ),
             SizedBox(height: progressTopSpacing),
             Container(
-              width: 122,
-              height: 6,
+              width: 122.w, height: 6.h,
               decoration: BoxDecoration(
                 color: Colors.white.withValues(alpha: 0.85),
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20.r),
               ),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Container(
-                  width: 81,
-                  height: 6,
+                  width: 81.w, height: 6.h,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.centerLeft,
@@ -274,41 +270,40 @@ class _CourseProgressCard extends StatelessWidget {
                         actionColor,
                       ],
                     ),
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.r),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 9),
+            SizedBox(height: 9.h),
             Text(
               'Completed',
               style: AppTextStyles.s12w400.copyWith(
                 color: textColor.withValues(alpha: 0.65),
               ),
             ),
-            const SizedBox(height: 4),
+            SizedBox(height: 4.h),
             Row(
               children: [
                 Text(
                   completed,
                   style: AppTextStyles.s20w700.copyWith(
                     color: textColor,
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 const Spacer(),
                 Container(
-                  width: 44,
-                  height: 44,
+                  width: 44.w, height: 44.h,
                   decoration: BoxDecoration(
                     color: actionColor,
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.play_arrow_rounded,
                     color: Colors.white,
-                    size: 26,
+                    size: 26.w,
                   ),
                 ),
               ],

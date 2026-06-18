@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
@@ -50,8 +51,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
+              padding: EdgeInsets.symmetric(horizontal: 20.w,
                 vertical: 18,
               ),
               child: Row(
@@ -60,7 +60,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                     onTap: () => Navigator.pop(context),
                     child: Icon(
                       Icons.close,
-                      size: 20,
+                      size: 20.w,
                       color:
                           isDark ? AppColors.lightText : AppColors.darkText,
                     ),
@@ -77,18 +77,18 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 20),
+                  SizedBox(width: 20.w),
                 ],
               ),
             ),
-            const SizedBox(height: 70),
+            SizedBox(height: 70.h),
             Text(
               'Code is sent to ${widget.phoneNumber}',
               style: AppTextStyles.s18w600.copyWith(
                 color: AppColors.greyText,
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
@@ -103,7 +103,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: 30.h),
             RichText(
               text: TextSpan(
                 style: AppTextStyles.s12w400.copyWith(
@@ -121,12 +121,11 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 38),
+            SizedBox(height: 38.h),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 61),
+              padding: EdgeInsets.symmetric(horizontal: 61.w),
               child: SizedBox(
-                width: double.infinity,
-                height: 50,
+                width: double.infinity, height: 50.h,
                 child: ElevatedButton(
                   onPressed: () {
                     showDialog(
@@ -140,7 +139,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                     backgroundColor: AppColors.primary,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.r),
                     ),
                   ),
                   child: Text(
@@ -153,10 +152,10 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 68),
+            SizedBox(height: 68.h),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 60),
+                padding: EdgeInsets.symmetric(horizontal: 60.w),
                 child: GridView.count(
                   physics: const NeverScrollableScrollPhysics(),
                   crossAxisCount: 3,
@@ -198,11 +197,10 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
     required bool isDark,
   }) {
     return Container(
-      width: 50,
-      height: 55,
+      width: 50.w, height: 55.h,
       decoration: BoxDecoration(
         color: isDark ? AppColors.cardDark : Colors.white,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         border: Border.all(color: AppColors.border),
       ),
       alignment: Alignment.center,
@@ -230,7 +228,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
         child: icon != null
             ? Icon(
                 icon,
-                size: 20,
+                size: 20.w,
                 color: isDark ? AppColors.lightText : AppColors.darkText,
               )
             : Text(

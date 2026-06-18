@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
@@ -21,7 +22,7 @@ class AccountScreen extends StatelessWidget {
       backgroundColor: background,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 24, 20, 0),
+          padding: EdgeInsets.fromLTRB(20.w, 24.h, 20.w, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -29,20 +30,18 @@ class AccountScreen extends StatelessWidget {
                 'Account',
                 style: AppTextStyles.s24w700.copyWith(
                   color: titleColor,
-                  fontSize: 24,
+                  fontSize: 24.sp,
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(height: 23),
+              SizedBox(height: 23.h),
               Center(
                 child: Image.asset(
-                  'assets/images/avatar_account.png',
-                  width: 64,
-                  height: 89,
+                  'assets/images/avatar_account.png', width: 64.w, height: 89.h,
                   fit: BoxFit.contain,
                 ),
               ),
-              const SizedBox(height: 13),
+              SizedBox(height: 13.h),
               _AccountItem(
                 title: 'Favourite',
                 titleColor: titleColor,
@@ -52,19 +51,19 @@ class AccountScreen extends StatelessWidget {
                   () => const MyCoursesScreen(),
                 ),
               ),
-              const SizedBox(height: 15),
+              SizedBox(height: 15.h),
               _AccountItem(
                 title: 'Edit Account',
                 titleColor: titleColor,
                 dividerColor: dividerColor,
               ),
-              const SizedBox(height: 15),
+              SizedBox(height: 15.h),
               _AccountItem(
                 title: 'Settings and Privacy',
                 titleColor: titleColor,
                 dividerColor: dividerColor,
               ),
-              const SizedBox(height: 15),
+              SizedBox(height: 15.h),
               _AccountItem(
                 title: 'Help',
                 titleColor: titleColor,
@@ -97,7 +96,7 @@ class _AccountItem extends StatelessWidget {
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
       child: Container(
-        height: 48,
+        height: 48.h,
         decoration: BoxDecoration(
           // border: Border(bottom: BorderSide(color: dividerColor)),
         ),
@@ -108,14 +107,14 @@ class _AccountItem extends StatelessWidget {
                 title,
                 style: AppTextStyles.s16w500.copyWith(
                   color: titleColor,
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ),
             Icon(
               Icons.chevron_right_rounded,
-              size: 18,
+              size: 18.w,
               color: titleColor.withValues(alpha: 0.62),
             ),
           ],

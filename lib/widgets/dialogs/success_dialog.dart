@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_learning_app/screens/main/main_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
@@ -18,17 +19,14 @@ class SuccessDialog extends StatelessWidget {
 
       backgroundColor: Colors.transparent,
 
-      insetPadding: const EdgeInsets.symmetric(
-        horizontal: 48,
+      insetPadding: EdgeInsets.symmetric(horizontal: 48.w,
       ),
 
       child: Container(
 
-        width: 291,
-        height: 301,
+        width: 291.w, height: 301.h,
 
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
+        padding: EdgeInsets.symmetric(horizontal: 20.w,
           vertical: 24,
         ),
 
@@ -39,7 +37,7 @@ class SuccessDialog extends StatelessWidget {
               : Colors.white,
 
           borderRadius:
-          BorderRadius.circular(12),
+          BorderRadius.circular(12.r),
         ),
 
         child: Column(
@@ -50,8 +48,7 @@ class SuccessDialog extends StatelessWidget {
             // CHECK ICON
             Container(
 
-              width: 64,
-              height: 64,
+              width: 64.w, height: 64.h,
 
               decoration: const BoxDecoration(
 
@@ -60,17 +57,17 @@ class SuccessDialog extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
 
-              child: const Icon(
+              child: Icon(
 
                 Icons.check,
 
                 color: Colors.white,
 
-                size: 40,
+                size: 40.w,
               ),
             ),
 
-            const SizedBox(height: 19),
+            SizedBox(height: 19.h),
 
             // TITLE
             Text(
@@ -86,7 +83,7 @@ class SuccessDialog extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 9),
+            SizedBox(height: 9.h),
 
             // SUBTITLE
             Text(
@@ -102,19 +99,16 @@ class SuccessDialog extends StatelessWidget {
               style:
               AppTextStyles.s12w400.copyWith(
 
-                color: AppColors.greyText,
-
-                height: 1.5,
+                color: AppColors.greyText, height: 1.5,
               ),
             ),
 
-            const SizedBox(height: 15),
+            SizedBox(height: 15.h),
 
             // BUTTON
             SizedBox(
 
-              width: double.infinity,
-              height: 50,
+              width: double.infinity, height: 50.h,
 
               child: ElevatedButton(
 
@@ -142,7 +136,7 @@ class SuccessDialog extends StatelessWidget {
                   RoundedRectangleBorder(
 
                     borderRadius:
-                    BorderRadius.circular(12),
+                    BorderRadius.circular(12.r),
                   ),
                 ),
 

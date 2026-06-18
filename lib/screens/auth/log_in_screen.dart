@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:online_learning_app/screens/auth/sign_up_screen.dart';
 import 'package:online_learning_app/screens/main/main_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
@@ -40,8 +41,7 @@ class LogInScreen extends StatelessWidget {
                   ? AppColors.darkBackground
                   : AppColors.lightBackground,
 
-              padding: const EdgeInsets.only(
-                left: 24,
+              padding: EdgeInsets.only(left: 24.w,
                 right: 24,
                 top: 50,
                 bottom: 24,
@@ -57,9 +57,7 @@ class LogInScreen extends StatelessWidget {
 
                   color: isDark
                       ? AppColors.lightText
-                      : AppColors.darkText,
-
-                  height: 1,
+                      : AppColors.darkText, height: 1,
                 ),
               ),
             ),
@@ -71,8 +69,7 @@ class LogInScreen extends StatelessWidget {
 
                 width: double.infinity,
 
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
+                padding: EdgeInsets.symmetric(horizontal: 24.w,
                   vertical: 24,
                 ),
 
@@ -83,10 +80,10 @@ class LogInScreen extends StatelessWidget {
                       : Colors.white,
 
                   borderRadius:
-                  const BorderRadius.only(
+                  BorderRadius.only(
 
-                    topLeft: Radius.circular(12),
-                    topRight: Radius.circular(12),
+                    topLeft: Radius.circular(12.r),
+                    topRight: Radius.circular(12.r),
                   ),
 
                 ),
@@ -111,14 +108,14 @@ class LogInScreen extends StatelessWidget {
                         ),
                       ),
 
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.h),
 
                       const CustomTextField(
                         hintText:
                         'Cooper_Kristin@gmail.com',
                       ),
 
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.h),
 
                       // PASSWORD
                       Text(
@@ -131,14 +128,14 @@ class LogInScreen extends StatelessWidget {
                         ),
                       ),
 
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.h),
 
                       const CustomTextField(
                         hintText: '••••••••••••',
                         obscureText: true,
                       ),
 
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10.h),
 
                       // FORGOT PASSWORD
                       Align(
@@ -156,7 +153,7 @@ class LogInScreen extends StatelessWidget {
                         ),
                       ),
 
-                      const SizedBox(height: 24),
+                      SizedBox(height: 24.h),
 
                       // BUTTON
                       PrimaryButton(
@@ -174,7 +171,7 @@ class LogInScreen extends StatelessWidget {
                         },
                       ),
 
-                      const SizedBox(height: 26),
+                      SizedBox(height: 26.h),
 
                       // SIGN UP
                       Center(
@@ -226,7 +223,7 @@ class LogInScreen extends StatelessWidget {
                         ),
                       ),
 
-                      const SizedBox(height: 30),
+                      SizedBox(height: 30.h),
 
                       // DIVIDER
                       Row(
@@ -244,8 +241,7 @@ class LogInScreen extends StatelessWidget {
                           Padding(
 
                             padding:
-                            const EdgeInsets.symmetric(
-                              horizontal: 12,
+                            EdgeInsets.symmetric(horizontal: 12.w,
                             ),
 
                             child: Text(
@@ -269,7 +265,7 @@ class LogInScreen extends StatelessWidget {
                         ],
                       ),
 
-                      const SizedBox(height: 28),
+                      SizedBox(height: 28.h),
 
                       // SOCIAL
                       Row(
@@ -281,18 +277,14 @@ class LogInScreen extends StatelessWidget {
 
                           // GOOGLE
                           SvgPicture.asset(
-                            'assets/icons/google.svg',
-                            width: 42,
-                            height: 42,
+                            'assets/icons/google.svg', width: 42.w, height: 42.h,
                           ),
 
-                          const SizedBox(width: 45),
+                          SizedBox(width: 45.w),
 
                           // FACEBOOK
                           SvgPicture.asset(
-                            'assets/icons/facebook.svg',
-                            width: 42,
-                            height: 42,
+                            'assets/icons/facebook.svg', width: 42.w, height: 42.h,
                           ),
                         ],
                       ),
