@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../core/constants/app_colors.dart';
+import '../../core/constants/app_strings.dart';
 import '../../core/constants/app_text_styles.dart';
-import '../../core/state/app_state.dart';
+import '../../core/theme/app_colors.dart';
 import '../progress/weekly_progress_screen.dart';
+import 'providers/purchase_provider.dart';
 
-class PurchaseSuccessScreen extends StatelessWidget {
+class PurchaseSuccessScreen extends ConsumerWidget {
   const PurchaseSuccessScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final background = isDark ? AppColors.darkBackground : Colors.white;
     final textPrimary = isDark ? Colors.white : AppColors.darkText;
@@ -37,7 +39,7 @@ class PurchaseSuccessScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 19.h),
                 Text(
-                  'Successful purchase!',
+                  AppStrings.successfulPurchase,
                   style: AppTextStyles.s16w500.copyWith(
                     color: textPrimary,
                     fontSize: 16.sp,
@@ -49,7 +51,7 @@ class PurchaseSuccessScreen extends StatelessWidget {
                   width: double.infinity, height: 48.h,
                   child: ElevatedButton(
                     onPressed: () {
-                      AppState.completePurchase();
+                      ref.read(purchaseProvider.notifier).complete();
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (_) => const WeeklyProgressScreen(),

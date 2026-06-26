@@ -1,76 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../core/constants/app_colors.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../core/constants/app_strings.dart';
 import '../../core/constants/app_text_styles.dart';
 import '../../widgets/empty_state_view.dart';
+import 'models/main_models.dart';
 import 'no_notifications_screen.dart';
+import 'providers/notification_provider.dart';
 
 enum NotificationSection { message, notification }
 
-class NotificationItem {
-  const NotificationItem({
-    required this.iconPath,
-    required this.iconBackgroundColor,
-    required this.iconWidth,
-    required this.iconHeight,
-    required this.title,
-    required this.time,
-  });
+class NotificationScreen extends ConsumerWidget {
+  const NotificationScreen({super.key, this.notifications});
 
-  final String iconPath;
-  final Color iconBackgroundColor;
-  final double iconWidth;
-  final double iconHeight;
-  final String title;
-  final String time;
-}
-
-class NotificationScreen extends StatelessWidget {
-  const NotificationScreen({super.key, this.notifications = _demoNotifications});
-
-  static const _demoNotifications = [
-    NotificationItem(
-      iconPath: 'assets/icons/notification_wallet.svg',
-      iconBackgroundColor: Color(0xFFFFE7EE),
-      iconWidth: 18,
-      iconHeight: 15,
-      title: 'Successful purchase!',
-      time: 'Just now',
-    ),
-    NotificationItem(
-      iconPath: 'assets/icons/notification_chat.svg',
-      iconBackgroundColor: AppColors.cardLight,
-      iconWidth: 18,
-      iconHeight: 18,
-      title: 'Congratulations on completing the...',
-      time: 'Just now',
-    ),
-    NotificationItem(
-      iconPath: 'assets/icons/notification_chat.svg',
-      iconBackgroundColor: AppColors.cardLight,
-      iconWidth: 18,
-      iconHeight: 18,
-      title: 'Your course has been updated, you...',
-      time: 'Just now',
-    ),
-    NotificationItem(
-      iconPath: 'assets/icons/notification_chat.svg',
-      iconBackgroundColor: AppColors.cardLight,
-      iconWidth: 18,
-      iconHeight: 18,
-      title: 'Congratulations, you have...',
-      time: 'Just now',
-    ),
-  ];
-
-  final List<NotificationItem> notifications;
+  final List<NotificationItem>? notifications;
 
   @override
-  Widget build(BuildContext context) {
-    if (notifications.isEmpty) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final List<NotificationItem> items =
+        notifications ?? ref.watch(notificationsProvider);
+
+    if (items.isEmpty) {
       return const NoNotificationsScreen();
     }
 
@@ -94,7 +48,7 @@ class NotificationScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Notifications',
+                  AppStrings.notifications,
                   style: AppTextStyles.s24w700.copyWith(
                     color: titleColor,
                   ),
@@ -107,7 +61,7 @@ class NotificationScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 16.h),
                 Expanded(
-                  child: NotificationList(notifications: notifications),
+                  child: NotificationList(notifications: items),
                 ),
               ],
             ),
@@ -136,14 +90,14 @@ class NotificationTabs extends StatelessWidget {
       children: [
         Expanded(
           child: _TabLabel(
-            label: 'message',
+            label: AppStrings.message,
             isActive: active == NotificationSection.message,
             onTap: onMessageTap,
           ),
         ),
         Expanded(
           child: _TabLabel(
-            label: 'notification',
+            label: AppStrings.notification,
             isActive: active == NotificationSection.notification,
             showDot: true,
             onTap: onNotificationTap,
@@ -227,8 +181,8 @@ class NotificationList extends StatelessWidget {
       return const Center(
         child: EmptyStateBody(
           kind: EmptyStateKind.notifications,
-          title: 'No Notifications yet!',
-          subtitle: 'We will notify you once we have something for you',
+          title: AppStrings.noNotificationsTitle,
+          subtitle: AppStrings.noNotificationsSubtitle,
           yOffset: -28,
         ),
       );

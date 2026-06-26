@@ -1,32 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../core/constants/app_colors.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
-import '../../core/state/app_state.dart';
 import '../../core/utils/network_guard.dart';
 import '../course/course_video_screen.dart';
+import '../course/models/course_models.dart';
+import '../course/providers/course_provider.dart';
+import '../payment/providers/purchase_provider.dart';
 import 'no_products_screen.dart';
 
-class MyCoursesScreen extends StatelessWidget {
+class MyCoursesScreen extends ConsumerWidget {
   const MyCoursesScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder<bool>(
-      valueListenable: AppState.purchaseCompleted,
-      builder: (context, purchased, _) {
-        if (!purchased) {
-          return const NoProductsScreen();
-        }
+  Widget build(BuildContext context, WidgetRef ref) {
+    final purchased = ref.watch(purchaseProvider);
 
-        return _MyCoursesContent();
-      },
-    );
+    if (!purchased) {
+      return const NoProductsScreen();
+    }
+
+    return _MyCoursesContent(courses: ref.watch(myCoursesProvider));
   }
 }
 
 class _MyCoursesContent extends StatelessWidget {
+  const _MyCoursesContent({required this.courses});
+
+  final List<MyCourse> courses;
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -81,31 +85,12 @@ class _MyCoursesContent extends StatelessWidget {
                     childAspectRatio: 160 / 182,
                   ),
                   children: [
-                    _CourseProgressCard(
-                      isDark: isDark,
-                      title: 'Product\nDesign v1.0',
-                      completed: '14/24',
-                      color: const Color(0xFFFFE7EE),
-                      actionColor: const Color(0xFFEC7B9C),
-                      onTap: () => _openVideo(context),
-                    ),
-                    _CourseProgressCard(
-                      isDark: isDark,
-                      title: 'Java\nDevelopment',
-                      completed: '12/18',
-                      color: const Color(0xFFBAD6FF),
-                      actionColor: AppColors.primary,
-                      onTap: () => _openVideo(context),
-                    ),
-                    _CourseProgressCard(
-                      isDark: isDark,
-                      title: 'Visual Design',
-                      completed: '10/16',
-                      color: const Color(0xFFBAE0DB),
-                      actionColor: const Color(0xFF398A80),
-                      progressTopSpacing: 46,
-                      onTap: () => _openVideo(context),
-                    ),
+                    for (final course in courses)
+                      _CourseProgressCard(
+                        isDark: isDark,
+                        course: course,
+                        onTap: () => _openVideo(context),
+                      ),
                   ],
                 ),
               ),
@@ -149,8 +134,8 @@ class _LearnedTodayCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 20.h),
-          Text(
-            'Learned today',
+                Text(
+                  'Learned today',
             style: AppTextStyles.s12w400.copyWith(
               color: AppColors.greyText,
             ),
@@ -210,21 +195,13 @@ class _LearnedTodayCard extends StatelessWidget {
 class _CourseProgressCard extends StatelessWidget {
   const _CourseProgressCard({
     required this.isDark,
-    required this.title,
-    required this.completed,
-    required this.color,
-    required this.actionColor,
+    required this.course,
     required this.onTap,
-    this.progressTopSpacing = 23,
   });
 
   final bool isDark;
-  final String title;
-  final String completed;
-  final Color color;
-  final Color actionColor;
+  final MyCourse course;
   final VoidCallback onTap;
-  final double progressTopSpacing;
 
   @override
   Widget build(BuildContext context) {
@@ -235,7 +212,7 @@ class _CourseProgressCard extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.fromLTRB(14.w, 18.h, 14.w, 14.h),
         decoration: BoxDecoration(
-          color: color,
+          color: course.color,
           borderRadius: BorderRadius.circular(14.r),
         ),
         child: Column(
@@ -243,14 +220,14 @@ class _CourseProgressCard extends StatelessWidget {
           children: [
             SizedBox(height: 23.h),
             Text(
-              title,
+              course.title,
               style: AppTextStyles.s16w500.copyWith(
                 color: textColor,
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w700, height: 1.25,
               ),
             ),
-            SizedBox(height: progressTopSpacing),
+            SizedBox(height: course.progressTopSpacing),
             Container(
               width: 122.w, height: 6.h,
               decoration: BoxDecoration(
@@ -266,8 +243,8 @@ class _CourseProgressCard extends StatelessWidget {
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                       colors: [
-                        actionColor.withValues(alpha: 0.35),
-                        actionColor,
+                        course.actionColor.withValues(alpha: 0.35),
+                        course.actionColor,
                       ],
                     ),
                     borderRadius: BorderRadius.circular(20.r),
@@ -286,7 +263,7 @@ class _CourseProgressCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  completed,
+                  course.completed,
                   style: AppTextStyles.s20w700.copyWith(
                     color: textColor,
                     fontSize: 20.sp,
@@ -297,7 +274,7 @@ class _CourseProgressCard extends StatelessWidget {
                 Container(
                   width: 44.w, height: 44.h,
                   decoration: BoxDecoration(
-                    color: actionColor,
+                    color: course.actionColor,
                     shape: BoxShape.circle,
                   ),
                   child: Icon(

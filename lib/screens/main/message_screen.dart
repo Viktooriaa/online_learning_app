@@ -1,66 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../core/constants/app_colors.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../core/constants/app_strings.dart';
 import '../../core/constants/app_text_styles.dart';
 import '../../widgets/empty_state_view.dart';
 import '../../core/utils/network_guard.dart';
+import 'models/main_models.dart';
 import 'notification_screen.dart';
+import 'providers/message_provider.dart';
 
-class MessageItem {
-  const MessageItem({
-    required this.name,
-    required this.status,
-    required this.time,
-    required this.text,
-    this.hasPreview = false,
-  });
-
-  final String name;
-  final String status;
-  final String time;
-  final String text;
-  final bool hasPreview;
-}
-
-class MessageScreen extends StatelessWidget {
+class MessageScreen extends ConsumerWidget {
   const MessageScreen({
     super.key,
-    this.messages = _demoMessages,
+    this.messages,
     this.hasNotifications = true,
   });
 
-  static const _demoMessages = [
-    MessageItem(
-      name: 'Bert Pullman',
-      status: 'Online',
-      time: '04:32 pm',
-      text:
-          'Congratulations on completing the first lesson, keep up the good work!',
-    ),
-    MessageItem(
-      name: 'Daniel Lawson',
-      status: 'Online',
-      time: '04:32 pm',
-      text:
-          'Your course has been updated, you can check the new course in your study course.',
-      hasPreview: true,
-    ),
-    MessageItem(
-      name: 'Nguyen Shane',
-      status: 'Offline',
-      time: '12:00 am',
-      text:
-          "Congratulations, you have completed your registration! Let's start your learning journey next.",
-      hasPreview: true,
-    ),
-  ];
-
-  final List<MessageItem> messages;
+  final List<MessageItem>? messages;
   final bool hasNotifications;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final List<MessageItem> items = messages ?? ref.watch(messagesProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final background = isDark ? AppColors.darkBackground : Colors.white;
     final titleColor = isDark ? Colors.white : AppColors.darkText;
@@ -74,7 +37,7 @@ class MessageScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Notifications',
+                AppStrings.notifications,
                 style: AppTextStyles.s24w700.copyWith(
                   color: titleColor,
                   fontSize: 24.sp,
@@ -95,7 +58,7 @@ class MessageScreen extends StatelessWidget {
                 },
               ),
               SizedBox(height: 18.h),
-              Expanded(child: _MessageList(messages: messages)),
+              Expanded(child: _MessageList(messages: items)),
             ],
           ),
         ),
@@ -115,8 +78,8 @@ class _MessageList extends StatelessWidget {
       return const Center(
         child: EmptyStateBody(
           kind: EmptyStateKind.notifications,
-          title: 'No Notifications yet!',
-          subtitle: 'We will notify you once we have something for you',
+          title: AppStrings.noNotificationsTitle,
+          subtitle: AppStrings.noNotificationsSubtitle,
           yOffset: -28,
         ),
       );

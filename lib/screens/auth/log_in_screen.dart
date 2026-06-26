@@ -4,8 +4,8 @@ import 'package:online_learning_app/screens/auth/sign_up_screen.dart';
 import 'package:online_learning_app/screens/main/main_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
+import '../../core/theme/app_colors.dart';
 
 import '../../widgets/custom_text_field.dart';
 import '../../widgets/primary_button.dart';

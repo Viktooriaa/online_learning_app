@@ -1,0 +1,11 @@
+name: flutter_riverpod
+description: Local Riverpod-compatible API used by this project.
+version: 2.6.1
+publish_to: none
+
+environment:
+  sdk: ^3.11.3
+
+dependencies:
+  flutter:
+    sdk: flutter

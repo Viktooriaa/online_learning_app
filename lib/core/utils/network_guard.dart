@@ -23,7 +23,10 @@ class NetworkGuard {
   ) async {
     if (!context.mounted) return null;
 
-    if (!await hasConnection()) {
+    final hasNetwork = await hasConnection();
+    if (!context.mounted) return null;
+
+    if (!hasNetwork) {
       return Navigator.of(context).push<T>(
         MaterialPageRoute(builder: (_) => const NoNetworkScreen()),
       );

@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../core/constants/app_colors.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
 import '../../core/utils/network_guard.dart';
 import 'my_courses_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {

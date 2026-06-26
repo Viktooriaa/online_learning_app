@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:online_learning_app/screens/auth/continue_phone_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../core/constants/app_colors.dart';
+import '../../core/theme/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
 
 import '../../widgets/custom_text_field.dart';
