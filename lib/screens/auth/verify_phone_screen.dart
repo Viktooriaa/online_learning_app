@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../core/theme/app_colors.dart';
+import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text_styles.dart';
 import '../../widgets/dialogs/success_dialog.dart';
 
 class VerifyPhoneScreen extends StatefulWidget {
-  const VerifyPhoneScreen({
-    super.key,
-    this.phoneNumber = '283 835 2999',
-  });
+  const VerifyPhoneScreen({super.key, this.phoneNumber = '283 835 2999'});
 
   final String phoneNumber;
 
@@ -43,17 +40,15 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final compact = MediaQuery.sizeOf(context).height < 720;
 
     return Scaffold(
-      backgroundColor:
-          isDark ? AppColors.darkBackground : AppColors.lightText,
+      backgroundColor: isDark ? AppColors.darkBackground : AppColors.lightText,
       body: SafeArea(
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w,
-                vertical: 18,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 18),
               child: Row(
                 children: [
                   GestureDetector(
@@ -61,8 +56,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                     child: Icon(
                       Icons.close,
                       size: 20.w,
-                      color:
-                          isDark ? AppColors.lightText : AppColors.darkText,
+                      color: isDark ? AppColors.lightText : AppColors.darkText,
                     ),
                   ),
                   Expanded(
@@ -71,8 +65,9 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                         'Verify Phone',
                         style: AppTextStyles.s18w600.copyWith(
                           fontWeight: FontWeight.w600,
-                          color:
-                              isDark ? AppColors.lightText : AppColors.darkText,
+                          color: isDark
+                              ? AppColors.lightText
+                              : AppColors.darkText,
                         ),
                       ),
                     ),
@@ -81,14 +76,12 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 70.h),
+            SizedBox(height: compact ? 24.h : 70.h),
             Text(
               'Code is sent to ${widget.phoneNumber}',
-              style: AppTextStyles.s18w600.copyWith(
-                color: AppColors.greyText,
-              ),
+              style: AppTextStyles.s18w600.copyWith(color: AppColors.greyText),
             ),
-            SizedBox(height: 24.h),
+            SizedBox(height: compact ? 16.h : 24.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
@@ -103,7 +96,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 30.h),
+            SizedBox(height: compact ? 18.h : 30.h),
             RichText(
               text: TextSpan(
                 style: AppTextStyles.s12w400.copyWith(
@@ -121,17 +114,19 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 38.h),
+            SizedBox(height: compact ? 22.h : 38.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 61.w),
               child: SizedBox(
-                width: double.infinity, height: 50.h,
+                width: double.infinity,
+                height: 50.h,
                 child: ElevatedButton(
                   onPressed: () {
                     showDialog(
                       context: context,
-                      barrierColor:
-                          AppColors.darkBackground.withValues(alpha: 0.38),
+                      barrierColor: AppColors.darkBackground.withValues(
+                        alpha: 0.38,
+                      ),
                       builder: (_) => const SuccessDialog(),
                     );
                   },
@@ -152,15 +147,17 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 68.h),
+            SizedBox(height: compact ? 28.h : 68.h),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 60.w),
+                padding: EdgeInsets.symmetric(
+                  horizontal: compact ? 42.w : 60.w,
+                ),
                 child: GridView.count(
                   physics: const NeverScrollableScrollPhysics(),
                   crossAxisCount: 3,
-                  mainAxisSpacing: 30,
-                  crossAxisSpacing: 40,
+                  mainAxisSpacing: compact ? 18 : 30,
+                  crossAxisSpacing: compact ? 28 : 40,
                   children: [
                     ...List.generate(9, (index) {
                       final digit = '${index + 1}';
@@ -197,7 +194,8 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
     required bool isDark,
   }) {
     return Container(
-      width: 50.w, height: 55.h,
+      width: 50.w,
+      height: 55.h,
       decoration: BoxDecoration(
         color: isDark ? AppColors.cardDark : Colors.white,
         borderRadius: BorderRadius.circular(8.r),

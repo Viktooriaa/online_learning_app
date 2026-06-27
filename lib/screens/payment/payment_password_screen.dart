@@ -3,24 +3,20 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_text_styles.dart';
-import '../../core/theme/app_colors.dart';
+import '../../core/constants/app_colors.dart';
 import 'purchase_success_screen.dart';
 
 class PaymentPasswordScreen extends StatefulWidget {
   const PaymentPasswordScreen({super.key});
 
   @override
-  State<PaymentPasswordScreen> createState() =>
-      _PaymentPasswordScreenState();
+  State<PaymentPasswordScreen> createState() => _PaymentPasswordScreenState();
 }
 
-class _PaymentPasswordScreenState
-    extends State<PaymentPasswordScreen> {
-
+class _PaymentPasswordScreenState extends State<PaymentPasswordScreen> {
   final List<String> _password = [];
 
   void _onKeyTap(String value) {
-
     if (value == 'backspace') {
       if (_password.isNotEmpty) {
         setState(() {
@@ -37,11 +33,9 @@ class _PaymentPasswordScreenState
     }
 
     if (_password.length == 6) {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => const PurchaseSuccessScreen(),
-        ),
-      );
+      Navigator.of(
+        context,
+      ).push(MaterialPageRoute(builder: (_) => const PurchaseSuccessScreen()));
     }
   }
 
@@ -52,6 +46,7 @@ class _PaymentPasswordScreenState
     final cardColor = isDark ? const Color(0xFF2F3048) : Colors.white;
     final textPrimary = isDark ? Colors.white : AppColors.darkText;
     final textMuted = isDark ? const Color(0xFFB8B8D2) : AppColors.greyText;
+    final compact = MediaQuery.sizeOf(context).height < 720;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
@@ -63,112 +58,123 @@ class _PaymentPasswordScreenState
       child: Scaffold(
         backgroundColor: background,
         body: SafeArea(
-          child: Stack(
-            children: [
-            Positioned(
-            left: 24,
-            top: 18,
-            child: GestureDetector(
-              onTap: () => Navigator.maybePop(context),
-              child: Icon(
-                Icons.close_rounded,
-                size: 18.w,
-                color: isDark ? Colors.white : AppColors.darkText,
-              ),
-            ),
-          ),
-              Positioned(
-                top: 20,
-                left: 0,
-                right: 0,
-                child: Center(
-                  child: Text(
-                    'Payment Method',
-                    style: AppTextStyles.s12w500.copyWith(
-                      color: isDark ? Colors.white : AppColors.darkText,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ),
-          Positioned(
-                left: 20,
-                right: 20,
-                top: 8,
-                child: Opacity(
-                  opacity: isDark ? 0.42 : 0.76,
-                  child: const _MiniCard(),
-                ),
-              ),
-              Positioned(
-                top: 135,
-                left: 0,
-                right: 0,
-                child: Center(
-                  child: Text(
-                    '\$74.00',
-                    style: AppTextStyles.s24w700.copyWith(
-                      color: textPrimary,
-                      fontSize: 32.sp,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 0,
-                right: 0,
-                top: 250,
-                bottom: 0,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(28.r),
-                  ),
-                  child: Container(
-                    color: cardColor,
-                    padding: EdgeInsets.fromLTRB(
-                      26,
-                      28,
-                      26,
-                      18 + MediaQuery.of(context).padding.bottom,
-                    ),
-                    child: Column(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final cardTop = (constraints.maxHeight * (compact ? 0.25 : 0.31))
+                  .clamp(185.0, 250.0)
+                  .toDouble();
 
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Payment Password',
-                          style: AppTextStyles.s24w700.copyWith(
-                            color: textPrimary,
-                            fontSize: 24.sp,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        SizedBox(height: 4.h),
-                        Text(
-                          'Please enter the payment password',
-                          style: AppTextStyles.s12w400.copyWith(
-                            color: textMuted,
-                            fontSize: 12.sp,
-                          ),
-                        ),
-                        SizedBox(height: 22.h),
-                        _PasswordDots(
-                          isDark: isDark,
-                          filledCount: _password.length,
-                        ),
-                        SizedBox(height: 26.h),
-                        _Keypad(
-                          textPrimary: textPrimary,
-                          onKeyTap: _onKeyTap,
-                        ),
-                      ],
+              return Stack(
+                children: [
+                  Positioned(
+                    left: 24,
+                    top: 18,
+                    child: GestureDetector(
+                      onTap: () => Navigator.maybePop(context),
+                      child: Icon(
+                        Icons.close_rounded,
+                        size: 18.w,
+                        color: isDark ? Colors.white : AppColors.darkText,
+                      ),
                     ),
                   ),
-                ),
-              ),
-            ],
+                  Positioned(
+                    top: 20,
+                    left: 0,
+                    right: 0,
+                    child: Center(
+                      child: Text(
+                        'Payment Method',
+                        style: AppTextStyles.s12w500.copyWith(
+                          color: isDark ? Colors.white : AppColors.darkText,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 20,
+                    right: 20,
+                    top: compact ? -8 : 8,
+                    child: Opacity(
+                      opacity: isDark ? 0.42 : 0.76,
+                      child: const _MiniCard(),
+                    ),
+                  ),
+                  Positioned(
+                    top: cardTop - (compact ? 58 : 115),
+                    left: 0,
+                    right: 0,
+                    child: Center(
+                      child: Text(
+                        '\$74.00',
+                        style: AppTextStyles.s24w700.copyWith(
+                          color: textPrimary,
+                          fontSize: 32.sp,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 0,
+                    right: 0,
+                    top: cardTop,
+                    bottom: 0,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(28.r),
+                      ),
+                      child: Container(
+                        color: cardColor,
+                        padding: EdgeInsets.fromLTRB(
+                          26,
+                          compact ? 20 : 28,
+                          26,
+                          18 + MediaQuery.of(context).padding.bottom,
+                        ),
+                        child: SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'Payment Password',
+                                style: AppTextStyles.s24w700.copyWith(
+                                  color: textPrimary,
+                                  fontSize: 24.sp,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              SizedBox(height: 4.h),
+                              Text(
+                                'Please enter the payment password',
+                                style: AppTextStyles.s12w400.copyWith(
+                                  color: textMuted,
+                                  fontSize: 12.sp,
+                                ),
+                              ),
+                              SizedBox(height: compact ? 16.h : 22.h),
+                              _PasswordDots(
+                                isDark: isDark,
+                                filledCount: _password.length,
+                              ),
+                              SizedBox(height: compact ? 16.h : 26.h),
+                              _Keypad(
+                                textPrimary: textPrimary,
+                                onKeyTap: _onKeyTap,
+                                isCompact: compact,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ),
@@ -183,19 +189,13 @@ class _MiniCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Transform.translate(
       offset: Offset(20.w, 0.h),
-      child: Image.asset(
-        'assets/images/card.png',
-        fit: BoxFit.contain,
-      ),
+      child: Image.asset('assets/images/card.png', fit: BoxFit.contain),
     );
   }
 }
 
 class _PasswordDots extends StatelessWidget {
-  const _PasswordDots({
-    required this.isDark,
-    required this.filledCount,
-  });
+  const _PasswordDots({required this.isDark, required this.filledCount});
 
   final bool isDark;
   final int filledCount;
@@ -207,7 +207,8 @@ class _PasswordDots extends StatelessWidget {
       children: List.generate(
         6,
         (index) => Container(
-          width: 44.w, height: 55.h,
+          width: 44.w,
+          height: 55.h,
           decoration: BoxDecoration(
             color: index < filledCount
                 ? (isDark ? const Color(0xFF4A4A66) : Colors.white)
@@ -220,7 +221,8 @@ class _PasswordDots extends StatelessWidget {
           alignment: Alignment.center,
           child: index < filledCount
               ? Container(
-                  width: 8.w, height: 8.h,
+                  width: 8.w,
+                  height: 8.h,
                   decoration: BoxDecoration(
                     color: isDark ? Colors.white : AppColors.darkText,
                     shape: BoxShape.circle,
@@ -237,12 +239,14 @@ class _Keypad extends StatelessWidget {
   const _Keypad({
     required this.textPrimary,
     required this.onKeyTap,
+    required this.isCompact,
   });
 
   static const _backspace = 'backspace';
 
   final Color textPrimary;
   final Function(String) onKeyTap;
+  final bool isCompact;
 
   @override
   Widget build(BuildContext context) {
@@ -265,34 +269,28 @@ class _Keypad extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: keys.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        mainAxisSpacing: 14,
-        crossAxisSpacing: 26,
-        childAspectRatio: 1.8,
+        mainAxisSpacing: isCompact ? 8 : 14,
+        crossAxisSpacing: isCompact ? 18 : 26,
+        childAspectRatio: isCompact ? 2.25 : 1.8,
       ),
       itemBuilder: (context, index) {
         final value = keys[index];
 
         return GestureDetector(
-          onTap: value.isEmpty
-              ? null
-              : () => onKeyTap(value),
+          onTap: value.isEmpty ? null : () => onKeyTap(value),
           child: Center(
             child: value == _backspace
-                ? Icon(
-              Icons.backspace_outlined,
-              size: 16.w,
-              color: textPrimary,
-            )
+                ? Icon(Icons.backspace_outlined, size: 16.w, color: textPrimary)
                 : Text(
-              value,
-              style: AppTextStyles.s18w600.copyWith(
-                color: textPrimary,
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
+                    value,
+                    style: AppTextStyles.s18w600.copyWith(
+                      color: textPrimary,
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
           ),
         );
       },

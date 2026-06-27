@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constants/app_text_styles.dart';
 
-import '../../core/theme/app_colors.dart';
+import '../../core/constants/app_colors.dart';
 import 'verify_phone_screen.dart';
 
 class ContinuePhoneScreen extends StatefulWidget {
@@ -54,9 +54,7 @@ class _ContinuePhoneScreenState extends State<ContinuePhoneScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => VerifyPhoneScreen(
-          phoneNumber: _formattedForVerify,
-        ),
+        builder: (_) => VerifyPhoneScreen(phoneNumber: _formattedForVerify),
       ),
     );
   }
@@ -65,14 +63,20 @@ class _ContinuePhoneScreenState extends State<ContinuePhoneScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isPlaceholder = _digits.isEmpty;
+    final compact = MediaQuery.sizeOf(context).height < 720;
+    final topGap = compact ? 24.h : 52.h;
+    final imageSize = compact ? 96.w : 124.w;
+    final imageGap = compact ? 20.h : 42.h;
+    final keypadGap = compact ? 22.h : 51.h;
 
     return Scaffold(
-      backgroundColor:
-          isDark ? AppColors.darkBackground : AppColors.lightBackground,
+      backgroundColor: isDark
+          ? AppColors.darkBackground
+          : AppColors.lightBackground,
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(height: 52.h),
+            SizedBox(height: topGap),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: Row(
@@ -82,8 +86,7 @@ class _ContinuePhoneScreenState extends State<ContinuePhoneScreen> {
                     child: Icon(
                       Icons.arrow_back_ios_new,
                       size: 18.w,
-                      color:
-                          isDark ? AppColors.lightText : AppColors.darkText,
+                      color: isDark ? AppColors.lightText : AppColors.darkText,
                     ),
                   ),
                   Expanded(
@@ -92,8 +95,9 @@ class _ContinuePhoneScreenState extends State<ContinuePhoneScreen> {
                         'Continue with Phone',
                         style: AppTextStyles.s14w400.copyWith(
                           fontWeight: FontWeight.w600,
-                          color:
-                              isDark ? AppColors.lightText : AppColors.darkText,
+                          color: isDark
+                              ? AppColors.lightText
+                              : AppColors.darkText,
                         ),
                       ),
                     ),
@@ -102,18 +106,21 @@ class _ContinuePhoneScreenState extends State<ContinuePhoneScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 26.h),
-            SizedBox(width: 124.w, height: 124.h,
+            SizedBox(height: compact ? 16.h : 26.h),
+            SizedBox(
+              width: imageSize,
+              height: imageSize,
               child: Image.asset(
                 'assets/images/continue_with_phone.png',
                 fit: BoxFit.contain,
               ),
             ),
-            SizedBox(height: 42.h),
+            SizedBox(height: imageGap),
             Expanded(
               child: Container(
                 width: double.infinity,
-                padding: EdgeInsets.only(left: 18.w,
+                padding: EdgeInsets.only(
+                  left: 18.w,
                   right: 18,
                   top: 12,
                   bottom: 22,
@@ -148,23 +155,23 @@ class _ContinuePhoneScreenState extends State<ContinuePhoneScreen> {
                         children: [
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 22.w,
-                              ),
+                              padding: EdgeInsets.symmetric(horizontal: 22.w),
                               child: Text(
                                 _displayPhone,
                                 style: AppTextStyles.s18w600.copyWith(
                                   color: isPlaceholder
                                       ? AppColors.greyText
                                       : (isDark
-                                          ? AppColors.lightText
-                                          : AppColors.darkText),
+                                            ? AppColors.lightText
+                                            : AppColors.darkText),
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
                             ),
                           ),
                           Container(
-                            width: 150.w, height: 58.h,
+                            width: 150.w,
+                            height: 58.h,
                             decoration: BoxDecoration(
                               color: AppColors.primary,
                               borderRadius: BorderRadius.circular(18.r),
@@ -189,10 +196,12 @@ class _ContinuePhoneScreenState extends State<ContinuePhoneScreen> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 51.h),
+                    SizedBox(height: keypadGap),
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 36.w),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: compact ? 24.w : 36.w,
+                        ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -253,7 +262,9 @@ class _ContinuePhoneScreenState extends State<ContinuePhoneScreen> {
     return GestureDetector(
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
-      child: SizedBox(width: 48.w, height: 48.h,
+      child: SizedBox(
+        width: 48.w,
+        height: 48.h,
         child: Center(
           child: icon != null
               ? Icon(

@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_learning_app/screens/main/main_screen.dart';
 
 import '../../core/constants/app_text_styles.dart';
-import '../../core/theme/app_colors.dart';
+import '../../core/constants/app_colors.dart';
 import '../../core/utils/network_guard.dart';
 import '../main/my_courses_screen.dart';
 
@@ -32,47 +32,58 @@ class WeeklyProgressScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: background,
         body: SafeArea(
-          child: Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 26.w),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _ProgressCard(
-                    cardColor: cardColor,
-                    textPrimary: textPrimary,
-                    textMuted: textMuted,
-                    isDark: isDark,
-                    onShare: () {
-                      NetworkGuard.push(
-                        context,
-                        () => const MyCoursesScreen(),
-                      );
-                    },
-                  ),
-                  SizedBox(height: 28.h),
-                  GestureDetector(
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => const MainScreen(),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 26.w),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _ProgressCard(
+                            cardColor: cardColor,
+                            textPrimary: textPrimary,
+                            textMuted: textMuted,
+                            isDark: isDark,
+                            onShare: () {
+                              NetworkGuard.push(
+                                context,
+                                () => const MyCoursesScreen(),
+                              );
+                            },
+                          ),
+                          SizedBox(height: 28.h),
+                          GestureDetector(
+                            onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => const MainScreen(),
+                              ),
+                            ),
+                            child: Container(
+                              width: 44.w,
+                              height: 44.h,
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.22),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(
+                                Icons.close_rounded,
+                                color: Colors.white,
+                                size: 28.w,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    child: Container(
-                      width: 44.w, height: 44.h,
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.22),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(
-                        Icons.close_rounded,
-                        color: Colors.white,
-                        size: 28.w,
-                      ),
-                    ),
                   ),
-                ],
-              ),
-            ),
+                ),
+              );
+            },
           ),
         ),
       ),
@@ -97,7 +108,8 @@ class _ProgressCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(width: 291.w, height: 442.h,
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxWidth: 291.w),
       child: Container(
         padding: EdgeInsets.fromLTRB(16.w, 18.h, 16.w, 14.h),
         decoration: BoxDecoration(
@@ -171,7 +183,8 @@ class _ProgressCard extends StatelessWidget {
               children: List.generate(
                 7,
                 (index) => Container(
-                  width: 28.w, height: 28.h,
+                  width: 28.w,
+                  height: 28.h,
                   margin: EdgeInsets.symmetric(horizontal: 4.w),
                   decoration: BoxDecoration(
                     color: index < 4
@@ -195,7 +208,8 @@ class _ProgressCard extends StatelessWidget {
             ),
             SizedBox(height: 38.h),
             SizedBox(
-              width: double.infinity, height: 50.h,
+              width: double.infinity,
+              height: 50.h,
               child: ElevatedButton(
                 onPressed: onShare,
                 style: ElevatedButton.styleFrom(
@@ -244,7 +258,10 @@ class _Metric extends StatelessWidget {
       children: [
         Text(
           label,
-          style: AppTextStyles.s12w400.copyWith(color: textMuted, fontSize: 12.sp),
+          style: AppTextStyles.s12w400.copyWith(
+            color: textMuted,
+            fontSize: 12.sp,
+          ),
         ),
         SizedBox(height: 5.h),
         RichText(
